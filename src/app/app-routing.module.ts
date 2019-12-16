@@ -4,6 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { ConferencesComponent } from './conferences/conferences.component';
 import { CreateConferenceComponent } from './create-conference/create-conference.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [

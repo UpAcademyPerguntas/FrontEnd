@@ -11,6 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -18,7 +21,9 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
   declarations: [
     AppComponent,
     MainComponent,
+    HomeComponent,
     LoginComponent,
+    RegisterComponent,
     ConferencesComponent,
     CreateConferenceComponent,
   ],
@@ -27,6 +32,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot()
