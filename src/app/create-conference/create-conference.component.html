@@ -1,0 +1,44 @@
+<form [formGroup]="conferenceForm" (ngSubmit)="onSubmit()" class="container mt-5 ">
+    <div class="form-group w-50">
+        <label for="formGroupNameInput">Conference Name</label>
+        <input type="text" formControlName="name" class="form-control" placeholder="Enter conference name..." required>
+        <small id="nameHelp" class="form-text text-muted">This will be the tittle of the conference</small>
+    </div>
+    <div class="form-group">
+        <label for="formGroupDescriptionInput">Conference Description</label>
+        <input type="text" formControlName="discription" class="form-control"
+            placeholder="Enter conference description...">
+        <small id="nameHelp" class="form-text text-muted">This will be the visible only on the conference page</small>
+    </div>
+    <div class="col-xs-12 col-12 col-md-4 form-group">
+        <label for="formGroupDateInput">Conference Date</label>
+        <input type="date" formControlName="date" placeholder="Datepicker" class="form-control" bsDatepicker>
+    </div>
+    <div class="col-xs-12 col-12 col-md-4 form-group">
+        <label for="formGroupTimeInput2">Conference Starting Time</label>
+        <input type="time" formControlName="time" placeholder="Timepicker" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" [disabled]="!conferenceForm.valid" class="btn btn-primary w-50">Submit</button>
+    </div>
+</form>
+    <p>
+        Form Value: {{ conferenceForm.value | json }}
+    </p>
+
+    <p>
+        Form Status: {{ conferenceForm.status }}
+    </p>
+
+    <div class="card border-secondary mt-5" style="width: 18rem;">
+        <div class="card-header">{{ conferenceForm.name }}</div>
+        <img class="card-img-top"
+            src="https://www.dinheirovivo.pt/wp-content/uploads/2019/09/BANNER_1_Code-monkeys-01-02-02-1060x594.png"
+            alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Free the code monkeys!!!</h5>
+            <p class="card-text">Critical Techworks quer libertar 400 code monkeys</p>
+            <a href="#" class="btn btn-primary">See Questions!</a>
+        </div>
+    </div>
