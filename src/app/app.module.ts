@@ -32,7 +32,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     TimepickerModule.forRoot()
   ],
   exports: [
-  
+
   ],
   providers: [],
   bootstrap: [AppComponent]

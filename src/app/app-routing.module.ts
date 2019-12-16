@@ -7,8 +7,16 @@ import { CreateConferenceComponent } from './create-conference/create-conference
 
 
 const routes: Routes = [
+  { path: '',
+  component: HomeComponent
+  },
   {
-    path: '', component: MainComponent
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'conferences', component: ConferencesComponent
@@ -16,6 +24,9 @@ const routes: Routes = [
   {
     path: 'create-conferences', component: CreateConferenceComponent
   },
+  {     // otherwise redirect to home
+    path: '**', redirectTo: ''
+  }
 ];
 
 @NgModule({
