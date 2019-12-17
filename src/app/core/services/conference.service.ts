@@ -7,23 +7,23 @@ import { ReplaySubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ConferenceService {
-  conferencesArray = [];
+  conferences = [];
 
-  conferencesArray$ = new ReplaySubject(); //observavel
+  conferences$ = new ReplaySubject(); //observavel
 
   constructor() { }
 
   addConference(conferenceForm) {
-    this.conferencesArray.push(conferenceForm);
-    this.conferencesArray$.next(this.conferencesArray);
+    this.conferences.push(conferenceForm);
+    this.conferences$.next(this.conferences);
   }
 
   getConference() {
-    return this.conferencesArray;
+    return this.conferences;
   }
 
   clearConference() {
-    this.conferencesArray = [];
-    return this.conferencesArray;
+    this.conferences = [];
+    return this.conferences;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ConferenceService } from '../services/conference.service';
+import { ConferenceService } from 'src/app/core/services/conference.service';
+
 
 @Component({
   selector: 'app-conferences',
@@ -7,14 +8,21 @@ import { ConferenceService } from '../services/conference.service';
   styleUrls: ['./conferences.component.scss']
 })
 export class ConferencesComponent implements OnInit {
+  arrayList = [];
+
 
   constructor(private conferenceService: ConferenceService) { //criar uma variavel que é da class ConferenceService
 
   }
 
   ngOnInit() {
-    this.conferenceService.conferencesArray$.subscribe(data => {
+    this.conferenceService.conferences$.subscribe((data:any[]) => {
+      
+      this.arrayList = data;
+      
       console.log(data);
+
+      console.log(this.arrayList);
 
     })
 
