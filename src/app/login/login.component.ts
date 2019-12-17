@@ -9,6 +9,7 @@ import { first } from 'rxjs/operators';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
@@ -19,7 +20,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService
   ) {
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   // for easy access to form fields
-  get f() {
+  get formFields() { //antes era f
     return this.loginForm.controls;
   }
 
@@ -49,18 +49,20 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    //verificar sem backend
-    // this.authService.login(this.f.username.value, this.f.password.value).subscribe(data => {
-    //   console.log(data);
-    //    })
 
-    // com backend
     this.loading = true;
-    this.authService.login(this.f.username.value, this.f.password.value)
+    this.authService.login(this.formFields.username.value, this.formFields.password.value)
       .pipe(first()).subscribe(data => {
         console.log(data);
 
-        this.router.navigate([this.returnUrl]);//perguntar sobre isto
+
+        if (this.authService.currentUserValue.role === 'Manager') {
+          this.router.navigate(['/conferences']);
+        } else if (this.authService.currentUserValue.role === 'Admin') {
+          this.router.navigate(['/']);
+          //meter depois para onde reencaminhar mesmo
+
+        }//falta fazer o else
       },
         error => {
           this.error = error;
