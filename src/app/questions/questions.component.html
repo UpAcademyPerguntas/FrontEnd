@@ -1,0 +1,27 @@
+<p>Conference Questions </p>
+
+<div class="card container" *ngFor="let card of cards">
+    <div class="card-body">
+
+      <p class="card-text">{{card.msg}}</p>
+      <a href="#" class="btn btn-primary">vote</a>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+
+
+  
+
+<form class="container mt-5 ">
+    
+    <p>Enter your Questions </p>
+
+    <div class="md-form form-sm">
+        <input Input type="text" id="form1" class="form-control form-control-sm"placeholder="Enter your Question">
+        <label for="form1" class=""></label>
+    </div>
+
+    <div _ngcontent-why-c2="" class="form-group"><button _ngcontent-why-c2="" class="btn btn-primary w-50" type="submit">Submit</button>
+    </div>
+</form>
+

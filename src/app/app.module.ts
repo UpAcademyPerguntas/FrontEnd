@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeModule } from './home/home.module';
 import { UserComponent } from './user/user.component';
+import { QuestionsComponent } from './questions/questions.component';
 
 
 
@@ -24,7 +25,7 @@ import { UserComponent } from './user/user.component';
     LoginComponent,
     RegisterComponent,
     UserComponent,
-    
+    QuestionsComponent,
   ],
   imports: [
     BrowserModule,
