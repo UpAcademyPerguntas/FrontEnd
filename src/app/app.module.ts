@@ -14,6 +14,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { QuestionsComponent } from './questions/questions.component';
 
 
 
@@ -26,6 +27,7 @@ import { RegisterComponent } from './register/register.component';
     RegisterComponent,
     ConferencesComponent,
     CreateConferenceComponent,
+    QuestionsComponent,
   ],
   imports: [
     BrowserModule,
