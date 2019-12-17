@@ -21,6 +21,10 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
+  {
+    path: 'questions',
+    component: QuestionsComponent
+  },
   {     // otherwise redirect to home
     path: '', 
     redirectTo: 'home',
