@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './core/services';
 
 @Component({
   selector: 'app-root',
@@ -6,8 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'ProjectoFinal';
+  title = 'ProjectoFinal';//perguntar se se pode apagar
+  currentUser: any;
 
-  
+
 
 }

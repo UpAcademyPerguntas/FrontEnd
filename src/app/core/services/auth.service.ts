@@ -4,15 +4,16 @@ import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
+  public currentRole = '';
 
   public currUserTemp:any = {};
-  // private apiUrl = "https://upacademytinder.herokuapp.com/api/users"; //verificar se funciona sem backend
   constructor(
     private http: HttpClient,
     private router: Router
@@ -39,10 +40,7 @@ export class AuthService {
   //       this.currentUserSubject.next(user);
   //       return user;
   //     }));
-  //   // if (user== admin) {
-
-
-  //   // }
+  //
 
   // }
 
@@ -62,9 +60,6 @@ export class AuthService {
     this.currentUserSubject.next(this.currUserTemp);
     return response;
   }
-
-  //falta fazer função para verificar se quem esta a fazer log in é admin ou manager e reemcaminhar para a respectiva pagina
-
 
 
   logout() {
