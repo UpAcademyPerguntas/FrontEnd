@@ -10,20 +10,21 @@ export class RoleGuard implements CanActivate {
   constructor(
     private router: Router,
     private authservice: AuthService
-  ) {}
+  ) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      const currentUser = this.authservice.currentRole;
-    if (currentRole === ) {
-//retrun false para negar acesso ver o que dá mais jeito de fazer
+    const currentUser = this.authservice.currentRole;
+    if (currentUser === 'admin') {
+      return false;
+      //para negar acesso
     }
-    next.data.roles
 
 
-      return true;
+    // perguntar se se pode apagar
+    //return true;
   }
 
 }

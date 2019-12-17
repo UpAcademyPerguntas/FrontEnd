@@ -5,27 +5,26 @@ import { ConferencesComponent } from './conferences/conferences.component';
 import { CreateConferenceComponent } from './create-conference/create-conference.component';
 
 const routes: Routes = [
-    { 
+    {
     path: '',
     component: ManagerComponent,
     children: [
         {
-            path: 'conferences', 
+            path: 'conferences',
             component: ConferencesComponent
         },
         {
-            path: 'create-conferences', 
+            path: 'create-conferences',
             component: CreateConferenceComponent
         },
         {     // otherwise redirect to manager
-            path: '', 
+            path: '',
             redirectTo: 'conferences',
             pathMatch: 'full'
         },
     ]
 }
-    
-]
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

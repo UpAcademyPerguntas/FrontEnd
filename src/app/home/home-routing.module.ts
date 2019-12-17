@@ -10,28 +10,27 @@ import { ManagerComponent } from './manager/manager.component';
 
 
 const routes: Routes = [
-    { 
+    {
     path: '',
     component: HomeComponent,
     children: [
         {
             path: 'admin',
-            loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), 
+            loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
             /* component: AdminComponent */
         },
         {
-            path: 'manager', 
+            path: 'manager',
             loadChildren: () => import('./manager/manager.module').then(m => m.ManagerModule),
             /* component: ManagerComponent */
         },
         {     // otherwise redirect to manager
-            path: '', 
+            path: '',
             redirectTo: 'manager',
             pathMatch: 'full'
-        },   
+        },
     ]},
-  
-]
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
