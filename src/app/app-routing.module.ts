@@ -7,6 +7,8 @@ import { CreateConferenceComponent } from './create-conference/create-conference
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { QuestionsComponent} from'./questions/questions.component';
+ 
 
 
 const routes: Routes = [
@@ -27,6 +29,12 @@ const routes: Routes = [
   {
     path: 'create-conferences', component: CreateConferenceComponent
   },
+
+  {
+    path: 'questions', component: QuestionsComponent
+  },
+
+
   {     // otherwise redirect to home
     path: '**', redirectTo: ''
   }
