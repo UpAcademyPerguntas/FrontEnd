@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 @Injectable({
     providedIn: 'root'
 })
@@ -10,11 +11,11 @@ export class QuestionService {
     ) {}
 
     addQuestion(question) {
-        return this.http.post('http://localhost:8888/QuestionsAPI/api/question', question);
+        return this.http.post(`${environment.apiUrl}/question`, question);
     }
 
     getAll(){
-        return this.http.get('http://localhost:8888/QuestionsAPI/api/question/getAll');
+        return this.http.get(`${environment.apiUrl}/question/getAll`);
     }
 
   }

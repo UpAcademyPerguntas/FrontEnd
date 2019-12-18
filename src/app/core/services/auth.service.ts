@@ -30,10 +30,11 @@ export class AuthService {
 
 
   login(userName, password) {
-
+    console.log(userName, password);
+    
     //com backend
-    return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, {'userName': userName, 'password': password })
-      .pipe(map(user => {
+    return this.http.post(`${environment.apiUrl}/user/auth`, {'userName': userName, 'password': password, 'role': null })
+      .pipe(map((user:any) => {
         //store user details in local storage to keep the user logged in
         localStorage.setItem('currentUser', JSON.stringify(user));
         localStorage.setItem('currentUserRole', JSON.stringify(user.role));
