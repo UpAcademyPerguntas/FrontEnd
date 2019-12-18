@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,18 @@ export class HomeComponent implements OnInit {
 
   role = "";
 
+  currentUser: any;
+
   constructor(
-    private router:Router
-  ) { }
+    private router: Router,
+    private authService: AuthService) {
+    this.authService.currentUser.subscribe(x => this.currentUser = x);
+}
+
+logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+}
 
   ngOnInit() {
     this.role = localStorage.getItem("currentUserRole");
