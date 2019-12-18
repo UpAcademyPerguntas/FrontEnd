@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ReplaySubject } from 'rxjs';
 import { HttpClientModule, HttpClient }    from '@angular/common/http';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +8,14 @@ import { HttpClientModule, HttpClient }    from '@angular/common/http';
 export class ConferenceService {
   conferences = [];
 
-  // //conferences$ = new ReplaySubject(); //observavel
-
   constructor(private http: HttpClient) {   }
 
   getAllConferences(id){
-    return this.http.get('http://localhost8080/QuestionsAPI/api/conference/user/'+id);
+    return this.http.get(`${environment.apiUrl}/conference/user/`+id);
+  }
+
+  getAll(){
+    return this.http.get(`${environment.apiUrl}/conference/getAll`);
   }
 
   addConference(conferenceForm) {
@@ -23,9 +23,9 @@ export class ConferenceService {
     //this.conferences$.next(this.conferences);
   }
 
-  // getConference() {
-  //   return this.conferences;
-  // }
+  getConference() {
+     return this.conferences;
+   }
 
   // clearConference() {
   //   this.conferences = [];
