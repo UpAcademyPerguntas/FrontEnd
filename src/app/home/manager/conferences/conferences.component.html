@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container text-center">
 
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
+<button type="button" class="btn btn-primary text-center" (click)="openModal(template)">Create conference modal</button>
  
 <ng-template #template>
   <div class="modal-header">
@@ -10,26 +10,38 @@
     </button>
   </div>
   <div class="modal-body">
-    This is a modal.
+    <form [formGroup]="conferenceForm" (ngSubmit)="onSubmit()" class="container mt-5 ">
+      <div class="form-group">
+          <label for="formGroupNameInput">Conference Name</label>
+          <input type="text" formControlName="name" class="form-control" placeholder="Enter conference name..." required>
+          <small id="nameHelp" class="form-text text-muted">This will be the tittle of the conference</small>
+      </div>
+      <div class="form-group">
+          <label for="formGroupDescriptionInput">Conference Description</label>
+              <div class="input-group">
+                  <textarea formControlName="description" class="form-control" aria-label="With textarea"></textarea>
+              </div>
+      </div>
+      <div class="form-group w-50">
+          <label for="formGroupDateInput">Conference Date</label>
+          <input type="text" formControlName="date" placeholder="Datepicker" class="form-control" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" bsDatepicker>
+      </div>
+      
+      <div class="form-group w-50">
+          <label for="formGroupTimeInput2">Conference Starting Time</label>
+          <input type="time" formControlName="time" placeholder="Timepicker" class="form-control">
+      </div>
+  
+      <div class="text-center">
+        <p>Do you want to create this conference?</p>
+        <button type="submit" [disabled]="!conferenceForm.valid" class="btn btn-primary w-25" (click)="modalRef.hide()">Create</button>
+        <button type="button" class="btn btn-light w-25" (click)="modalRef.hide()" >Cancel</button>
+      </div>
+  </form>
   </div>
 </ng-template> 
-  
-  <div class="card mb-3" style="max-width: 540px;">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="..." class="card-img" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div *ngFor="let conference of arrayList" class="card mb-3" style="max-width: 900px;">
+  <div *ngFor="let conference of managerConferences" class="card mb-3" style="max-width: 900px;">
     <div class="row no-gutters">
       <div class="col-md-4">
         <img src="http://jobit.pt/img/partners/techworks.jpg" class="card-img" alt="...">
@@ -38,7 +50,7 @@
         <div class="card-body">
           <h2 class="card-title">{{ conference.name }}</h2>
           <h2 class="card-title"> numero: {{ arrayList.length }}</h2>
-          <p class="card-text">{{ conference.discription }}</p>
+          <p class="card-text">{{ conference.description }}</p>
           <p class="card-text">{{ conference.date }}</p>
           <p class="card-text">{{ conference.time }}</p>
           <a href="#" class="btn btn-primary">See Questions!</a>

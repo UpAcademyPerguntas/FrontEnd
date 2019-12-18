@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConferencesComponent } from './conferences/conferences.component';
-import { CreateConferenceComponent } from './create-conference/create-conference.component';
 import { ManagerComponent } from './manager.component';
 import { AdminComponent } from '../admin/admin.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -15,7 +14,6 @@ import { ManagerRoutingModule } from './manager-routing.module';
   declarations: [
     ManagerComponent,
     ConferencesComponent,
-    CreateConferenceComponent,
     AdminComponent
   ],
   imports: [
@@ -29,7 +27,6 @@ import { ManagerRoutingModule } from './manager-routing.module';
   exports: [
     ManagerComponent,
     ConferencesComponent,
-    CreateConferenceComponent,
     AdminComponent
   ]
 })
