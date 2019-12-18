@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ConferenceService } from 'src/app/core/services/conference.service';
-
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-conferences',
@@ -9,11 +9,31 @@ import { ConferenceService } from 'src/app/core/services/conference.service';
 })
 export class ConferencesComponent implements OnInit {
   arrayList = [];
-
-
-  constructor(private conferenceService: ConferenceService) { //criar uma variavel que é da class ConferenceService
+  modalRef: BsModalRef;
+  conferenceCount: number; ; 
+  
+  //criar uma variavel que é da class ConferenceService
+  constructor(private conferenceService: ConferenceService, private modalService: BsModalService) { 
 
   }
+
+ 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+  
+  deleteConference(x){
+
+    console.log("quero apagar esta conferenceia");
+
+    console.log(this.arrayList);
+
+    this.arrayList.splice(x, 1);
+
+    console.log(this.arrayList);
+    
+  }
+
 
   ngOnInit() {
     this.conferenceService.conferences$.subscribe((data:any[]) => {
@@ -27,6 +47,9 @@ export class ConferencesComponent implements OnInit {
     })
 
 
+
   }
 
 }
+
+

@@ -36,16 +36,7 @@ export class CreateConferenceComponent implements OnInit {
     
   }
   
-  deleteConference() {
-    
-
-    this.conferenceService.clearConference();
-
-    console.log(this.conferenceForm.value);
-
-    console.log("entrou na updateConference()");
-    
-  }
+ 
   
     
     conferences: any;

@@ -1,37 +1,55 @@
 <div class="container">
-    
-    <div class="card-columns">
 
-        <div *ngFor="let conference of arrayList" class="container card border-secondary mt-5" style="width: 18rem;">
-            <div class="card-header">{{ conference.name }}</div>
-            <img class="card-img-top" src="http://jobit.pt/img/partners/techworks.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h2 class="card-title">{{ conference.name }}</h2>
-                <p class="card-text">{{ conference.discription }}</p>
-                <h5 class="card-title">{{ conference.date }}</h5>
-                <h5 class="card-title">{{ conference.time }}</h5>
-                <a href="#" class="btn btn-primary">See Questions!</a>
-            </div>
-            <div class="card-footer bg-transparent border-success text-center">
-                <button type="button" class="btn btn-outline-primary btn-block">Share</button>
-                <button type="button" class="btn btn-outline-warning btn-block">Edit</button>
-                <button type="button" class="btn btn-outline-danger btn-block"
-                    (click)="deleteConference()">Delete</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card mb-3" style="max-width: 750px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="http://jobit.pt/img/partners/techworks.jpg" class="card-img" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
+<button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
+ 
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Create conference</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    This is a modal.
+  </div>
+</ng-template> 
+  
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="..." class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div *ngFor="let conference of arrayList" class="card mb-3" style="max-width: 900px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="http://jobit.pt/img/partners/techworks.jpg" class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title">{{ conference.name }}</h2>
+          <h2 class="card-title"> numero: {{ arrayList.length }}</h2>
+          <p class="card-text">{{ conference.discription }}</p>
+          <p class="card-text">{{ conference.date }}</p>
+          <p class="card-text">{{ conference.time }}</p>
+          <a href="#" class="btn btn-primary">See Questions!</a>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+        <div class="card-footer bg-transparent border-success text-center">
+          <button type="button" class="btn btn-outline-primary w-25">Share</button>
+          <button type="button" class="btn btn-outline-warning w-25">Edit</button>
+          <button type="button" class="btn btn-outline-danger w-25" (click)="deleteConference(0)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

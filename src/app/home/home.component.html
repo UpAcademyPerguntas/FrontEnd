@@ -16,9 +16,13 @@
     </span>
     <button class="btn btn-outline-light" (click)="logout()" translate>Logout</button>
 </nav>
-<div class="image">
+
     <p class="text-white">Home works!</p>
 
+    <button class="btn btn-success" [routerLinkActive]="['active']" routerLink="/home/manager/conferences">Conferences</button>
 
-</div>
+    <button class="btn btn-success" [routerLinkActive]="['active']" routerLink="/home/manager/create-conferences">Create Conferences</button>
+
+
+
 <router-outlet></router-outlet>
