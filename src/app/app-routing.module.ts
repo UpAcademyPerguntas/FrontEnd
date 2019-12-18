@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { QuestionsComponent} from'./questions/questions.component';
+import { AuthGuard } from './core/guard/auth.guard';
 
 
 
@@ -11,6 +12,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -31,7 +33,8 @@ const routes: Routes = [
   },
 
   {
-    path: 'questions', component: QuestionsComponent
+    path: 'questions',
+    component: QuestionsComponent
   },
 
 

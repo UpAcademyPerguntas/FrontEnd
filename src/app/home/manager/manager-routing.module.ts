@@ -4,23 +4,22 @@ import { ManagerComponent } from './manager.component';
 import { ConferencesComponent } from './conferences/conferences.component';
 
 const routes: Routes = [
-    { 
+    {
     path: '',
     component: ManagerComponent,
     children: [
         {
-            path: 'conferences', 
+            path: 'conferences',
             component: ConferencesComponent
         },
         {     // otherwise redirect to manager
-            path: '', 
+            path: '',
             redirectTo: 'conferences',
             pathMatch: 'full'
         },
     ]
 }
-    
-]
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { first } from 'rxjs/operators';
@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+    this.loginForm = new FormGroup({
+      userName: new FormControl('', [Validators.required]),
+      password:  new FormControl('', [Validators.required])
     });
 
   }
@@ -43,23 +43,23 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('entrei');
+
     this.submitted = true;
     // stops here if the form is invalid
     if (this.loginForm.invalid) {
       return;
     }
-
-
     this.loading = true;
-    this.authService.login(this.formFields.username.value, this.formFields.password.value)
+    this.authService.login(this.formFields.userName.value, this.formFields.password.value)
       .pipe(first()).subscribe(data => {
         console.log(data);
 
 
-        if (this.authService.currentUserValue.role === 'Manager') {
-          this.router.navigate(['/conferences']);
-        } else if (this.authService.currentUserValue.role === 'Admin') {
-          this.router.navigate(['/']);
+        if (this.authService.currentUserValue.role === 'manager') {
+          this.router.navigate(['/home/manager']);
+        } else if (this.authService.currentUserValue.role === 'admin') {
+          this.router.navigate(['/home/admin']);
           //meter depois para onde reencaminhar mesmo
 
         }//falta fazer o else

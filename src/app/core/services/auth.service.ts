@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import {environment} from './../../../environments/environment';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class AuthService {
   public currentUser: Observable<any>;
   public currentRole = '';
 
-  public currUserTemp:any = {};
+  public currUserTemp: any = {};
   constructor(
     private http: HttpClient,
     private router: Router
@@ -28,38 +29,38 @@ export class AuthService {
   }
 
 
-  // login(username, password) {
-  //   // return this.http.get(this.apiUrl + '?filter={"where":{"username":"' + username + '"}}'); //verificar se funciona sem backend
+  login(userName, password) {
+    console.log(userName, password);
+    
+    //com backend
+    return this.http.post(`${environment.apiUrl}/user/auth`, {'userName': userName, 'password': password, 'role': null })
+      .pipe(map((user:any) => {
+        //store user details in local storage to keep the user logged in
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('currentUserRole', JSON.stringify(user.role));
+        this.currentUserSubject.next(user);
+        return user;
+      }));
 
-  //   //com backend
-  //   return this.http.post<any>(`${config.apiUrl}/users/authenticate`, {'username': username, 'password': password })
-  //     .pipe(map(user => {
-  //       //store user details in local storage to keep the user logged in
-  //       localStorage.setItem('currentUser', JSON.stringify(user));
-  //       localStorage.setItem('currentUserRole', JSON.stringify(user.role));
-  //       this.currentUserSubject.next(user);
-  //       return user;
-  //     }));
-  //
 
-  // }
-
-  public login(username, password): ReplaySubject<any> {
-    // Simulate Jax-rs Api request
-    if (username === 'admin' && password === 'admin') {
-      this.currUserTemp.id = 1;
-      this.currUserTemp.name = 'Ze Carlos';
-      this.currUserTemp.role = 'Manager';
-    }
-    const response: ReplaySubject<any> = new ReplaySubject(1);
-    if ( this.currUserTemp.id) {
-      response.next( this.currUserTemp);
-    } else {
-      response.error({ msg: 'Deu erro' });
-    }
-    this.currentUserSubject.next(this.currUserTemp);
-    return response;
   }
+
+  // public login(userName, password): ReplaySubject<any> {
+  //   // Simulate Jax-rs Api request
+  //   if (userName === 'admin' && password === 'admin') {
+  //     this.currUserTemp.id = 1;
+  //     this.currUserTemp.userName = 'Ze Carlos';
+  //     this.currUserTemp.role = 'manager';
+  //   }
+  //   const response: ReplaySubject<any> = new ReplaySubject(1);
+  //   if ( this.currUserTemp.id) {
+  //     response.next( this.currUserTemp);
+  //   } else {
+  //     response.error({ msg: 'Deu erro' });
+  //   }
+  //   this.currentUserSubject.next(this.currUserTemp);
+  //   return response;
+  // }
 
 
   logout() {
