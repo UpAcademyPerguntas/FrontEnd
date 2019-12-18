@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 import { ConferencesComponent } from './manager/conferences/conferences.component';
-import { CreateConferenceComponent } from './manager/create-conference/create-conference.component';
+
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
 
