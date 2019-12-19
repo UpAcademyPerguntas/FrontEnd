@@ -13,14 +13,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ConferencesComponent implements OnInit {
 
-  conferenceForm = this.conference.group({
+  conferenceForm = this.conferenceBuilder.group({
     name: ['', Validators.required],
     description: [''],
     date: [''],
     time: [''],
   });
 
-  managerConferences = [];
+  managerConferences:any[] = [];
   modalRef: BsModalRef;
   conferenceCount: number;
   managerId: number;
@@ -28,7 +28,7 @@ export class ConferencesComponent implements OnInit {
   //criar uma variavel que é da class ConferenceService
   constructor(
     private conferenceService: ConferenceService,
-    private conference: FormBuilder,
+    private conferenceBuilder: FormBuilder,
     private modalService: BsModalService,
     private activatedRoute: ActivatedRoute,
     ) { 
@@ -38,9 +38,11 @@ export class ConferencesComponent implements OnInit {
   onSubmit() {         
     //window.alert('Your conference has been added to My Conference page!');
     console.warn(this.conferenceForm.value); //= a console log
-this.conferenceService.addConference(this.conferenceForm.value) //observavel
+    this.managerConferences.push(this.conferenceForm.value);
 
-}
+    this.conferenceService.addConference(this.conferenceForm.value) //observavel
+    this.conferenceForm.reset();
+  }
 
 openModal(template: TemplateRef<any>) {
   this.modalRef = this.modalService.show(template);
@@ -58,17 +60,15 @@ deleteConference(x){
   
   ngOnInit() {
     //this.managerId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.managerId = 1;
+    console.log(localStorage.getItem("currentUser"));
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    this.managerId = currentUser.id;
     console.log("sabes");
-                            //conferences$ é uma variavel assíncrona
-    //this.conferenceService.conferences$.subscribe((data:any[]) => { //vai buscar todas as conferencias
-     // this.managerConferences = data;
-     // console.log(data);
-      //console.log(this.managerConferences);
-    //})
-    
-  console.log(this.conferenceService.getAllConferences(this.managerId));
-  
+    this.conferenceService.getAllConferences(this.managerId).subscribe( (data:any[]) => {
+      console.log(data);
+      this.managerConferences = data;
+    });
+
   }
   
 }

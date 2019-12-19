@@ -1,6 +1,6 @@
 <div class="container text-center">
 
-<button type="button" class="btn btn-primary text-center" (click)="openModal(template)">Create conference modal</button>
+<button type="button" class="btn btn-primary text-center  mb-5" (click)="openModal(template)">Create conference modal</button>
  
 <ng-template #template>
   <div class="modal-header">
@@ -24,7 +24,7 @@
       </div>
       <div class="form-group w-50">
           <label for="formGroupDateInput">Conference Date</label>
-          <input type="text" formControlName="date" placeholder="Datepicker" class="form-control" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" bsDatepicker>
+          <input formControlName="date" placeholder="Conference Date" class="form-control" bsDatepicker >
       </div>
       
       <div class="form-group w-50">
@@ -41,7 +41,7 @@
   </div>
 </ng-template> 
 
-  <div *ngFor="let conference of conferences" class="card mb-3" style="max-width: 900px;">
+  <div *ngFor="let conference of managerConferences" class="card mb-3" style="max-width: 900px;">
     <div class="row no-gutters">
       <div class="col-md-4">
         <img src="http://jobit.pt/img/partners/techworks.jpg" class="card-img" alt="...">
@@ -49,7 +49,7 @@
       <div class="col-md-8">
         <div class="card-body">
           <h2 class="card-title">{{ conference.name }}</h2>
-          <h2 class="card-title"> numero: {{ conferences.length }}</h2>
+          <h2 class="card-title"> numero: {{ managerConferences.length }}</h2>
           <p class="card-text">{{ conference.description }}</p>
           <p class="card-text">{{ conference.date }}</p>
           <p class="card-text">{{ conference.time }}</p>

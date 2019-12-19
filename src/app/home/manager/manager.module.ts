@@ -14,7 +14,6 @@ import { ManagerRoutingModule } from './manager-routing.module';
   declarations: [
     ManagerComponent,
     ConferencesComponent,
-    AdminComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +26,6 @@ import { ManagerRoutingModule } from './manager-routing.module';
   exports: [
     ManagerComponent,
     ConferencesComponent,
-    AdminComponent
   ]
 })
 export class ManagerModule { }
