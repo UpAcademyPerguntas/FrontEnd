@@ -7,8 +7,8 @@ import { ManagerModule } from './manager/manager.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeRoutingModule } from './home-routing.module';
 import { AdminComponent } from './admin/admin.component';
-
-
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,8 @@ import { AdminComponent } from './admin/admin.component';
     HomeRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatDialogModule
   ]
 })
 export class HomeModule { }
