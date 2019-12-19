@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 import { ConferencesComponent } from './manager/conferences/conferences.component';
-
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
 
@@ -16,8 +15,8 @@ const routes: Routes = [
     children: [
         {
             path: 'admin',
-            loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-            /* component: AdminComponent */
+            //loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+             component: AdminComponent 
         },
         {
             path: 'manager',
