@@ -34,7 +34,7 @@ export class QuestionsComponent implements OnInit {
       
     })
   }
-// esta funçãoo retorna o pedido
+// esta função retorna o pedido
   submitQuestion(){
     this.questionService.addQuestion(this.question).subscribe( data => {
       console.log(data);
