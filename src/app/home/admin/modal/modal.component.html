@@ -1,0 +1,19 @@
+  <div class="bg-modal">
+    <div class="modal-content">
+      <div class="close">+</div>
+      <h4>New Manager</h4>
+      <div class="md-form mb-5">
+        <input [(ngModel)]="user.name" class="form-control" placeholder="Name">
+        <input [(ngModel)]="user.userName"  class="form-control" placeholder="Username">
+        <input [(ngModel)]="user.password" class="form-control" placeholder="Password">
+        <input type="button" class="btn btn-primary" value="Submit" [mat-dialog-close]="user">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
