@@ -5,6 +5,7 @@ import { HomeComponent } from './home.component';
 import { ConferencesComponent } from './manager/conferences/conferences.component';
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
+import { RoleGuard } from '../core/guard/role.guard';
 
 
 
@@ -16,12 +17,13 @@ const routes: Routes = [
         {
             path: 'admin',
             //loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-             component: AdminComponent 
+             component: AdminComponent
         },
         {
             path: 'manager',
             loadChildren: () => import('./manager/manager.module').then(m => m.ManagerModule),
             /* component: ManagerComponent */
+            canActivate: [RoleGuard]
         },
         {     // otherwise redirect to manager
             path: '',

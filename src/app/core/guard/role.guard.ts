@@ -16,12 +16,11 @@ export class RoleGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-   /*  const currentUser = this.authservice.currentRole;
+    const currentUser = this.authservice.currentRole;
     if (currentUser === 'admin') {
       return false;
       //para negar acesso
-    } */
-
+    }
 
     // perguntar se se pode apagar
     return true;

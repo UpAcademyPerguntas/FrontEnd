@@ -8,7 +8,7 @@ import { AuthService } from './core/services';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'ProjectoFinal';//perguntar se se pode apagar
+  title = 'ProjectoFinal';
   currentUser: any;
 
 
