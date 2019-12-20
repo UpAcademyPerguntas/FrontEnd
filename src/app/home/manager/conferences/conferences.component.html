@@ -40,8 +40,9 @@
   </form>
   </div>
 </ng-template> 
+</div>
 
-  <div *ngFor="let conference of managerConferences" class="card mb-3" style="max-width: 900px;">
+  <div *ngFor="let conference of managerConferences" class=" container card mb-3" style="max-width: 900px;">
     <div class="row no-gutters">
       <div class="col-md-4">
         <img src="http://jobit.pt/img/partners/techworks.jpg" class="card-img" alt="...">
@@ -49,7 +50,7 @@
       <div class="col-md-8">
         <div class="card-body">
           <h2 class="card-title">{{ conference.name }}</h2>
-          <h2 class="card-title"> numero: {{ managerConferences.length }}</h2>
+          <h5 class="card-title"> Id da conferencia: {{ conference.id }}</h5>
           <p class="card-text">{{ conference.description }}</p>
           <p class="card-text">{{ conference.date }}</p>
           <p class="card-text">{{ conference.time }}</p>
@@ -57,11 +58,51 @@
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
         <div class="card-footer bg-transparent border-success text-center">
-          <button type="button" class="btn btn-outline-primary w-25">Share</button>
-          <button type="button" class="btn btn-outline-warning w-25">Edit</button>
-          <button type="button" class="btn btn-outline-danger w-25" (click)="deleteConference(0)">Delete</button>
+          <button type="button" class="btn btn-outline-primary w-25" (click)="shareLink(conference.id)">Share</button>
+          <button type="button" class="btn btn-outline-warning w-25" (click)="openModal(templateEdit)">Edit</button>
+          <button type="button" class="btn btn-outline-danger w-25" (click)="deleteConference(conference.id)">Delete {{ conference.id }}</button>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+
+  <ng-template #templateEdit>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Edit conference</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="conferenceForm" (ngSubmit)="onEditSubmit(1)" class="container mt-5 ">
+        <div class="form-group">
+            <label for="formGroupNameInput">Conference Name</label>
+            <input type="text" formControlName="name" class="form-control" placeholder="Enter conference name..." required>
+            <small id="nameHelp" class="form-text text-muted">This will be the tittle of the conference</small>
+        </div>
+        <div class="form-group">
+            <label for="formGroupDescriptionInput">Conference Description</label>
+                <div class="input-group">
+                    <textarea formControlName="description" class="form-control" aria-label="With textarea"></textarea>
+                </div>
+        </div>
+        <div class="form-group w-50">
+            <label for="formGroupDateInput">Conference Date</label>
+            <input formControlName="date" placeholder="Conference Date" class="form-control" bsDatepicker >
+        </div>
+        
+        <div class="form-group w-50">
+            <label for="formGroupTimeInput2">Conference Starting Time</label>
+            <input type="time" formControlName="time" placeholder="Timepicker" class="form-control">
+        </div>
+    
+        <div class="text-center">
+          <p>Do you want to create this conference?</p>
+          <button type="submit" [disabled]="!conferenceForm.valid" class="btn btn-primary w-25" (click)="modalRef.hide()">Create</button>
+          <button type="button" class="btn btn-light w-25" (click)="modalRef.hide()" >Cancel</button>
+        </div>
+    </form>
+    </div>
+  </ng-template> 
+

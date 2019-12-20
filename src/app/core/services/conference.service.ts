@@ -10,16 +10,26 @@ export class ConferenceService {
 
   constructor(private http: HttpClient) {   }
 
-  getAllConferences(id){
+  getAllConferencesByUserId(id){
     return this.http.get(`${environment.apiUrl}/conference/user/`+id);
+  }
+
+  getConferenceById(id){
+    return this.http.get(`${environment.apiUrl}/conference/`+id);
+  }
+
+  deleteConferenceById(id){
+    return this.http.delete(`${environment.apiUrl}/conference/`+id, {responseType: 'text'});
   }
 
   getAll(){
     return this.http.get(`${environment.apiUrl}/conference/getAll`);
   }
 
-  addConference(conferenceForm) {
-    this.conferences.push(conferenceForm);
+  addConference(conference) {
+    this.conferences.push(conference);
+    return this.http.post(`${environment.apiUrl}/conference/`,conference);
+   
     //this.conferences$.next(this.conferences);
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
 import { ConferenceService } from 'src/app/core/services/conference.service';
@@ -13,62 +13,114 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ConferencesComponent implements OnInit {
 
-  conferenceForm = this.conferenceBuilder.group({
-    name: ['', Validators.required],
-    description: [''],
-    date: [''],
-    time: [''],
-  });
-
-  managerConferences:any[] = [];
+  managerId: number;
+  conferenceForm: FormGroup;
+  managerConferences: any[] = [];
   modalRef: BsModalRef;
   conferenceCount: number;
-  managerId: number;
-  
+
   //criar uma variavel que é da class ConferenceService
   constructor(
     private conferenceService: ConferenceService,
     private conferenceBuilder: FormBuilder,
     private modalService: BsModalService,
     private activatedRoute: ActivatedRoute,
-    ) { 
+  ) {
 
   }
-  
-  onSubmit() {         
-    //window.alert('Your conference has been added to My Conference page!');
-    console.warn(this.conferenceForm.value); //= a console log
-    this.managerConferences.push(this.conferenceForm.value);
 
-    this.conferenceService.addConference(this.conferenceForm.value) //observavel
+  onSubmit() {
+
+    //this.managerConferences.push(this.conferenceForm.value);
+    console.log(this.managerConferences);
+
+    let d: Date = this.conferenceForm.value.date;
+    let time = this.conferenceForm.value.time;
+
+    const conference = {
+      name: this.conferenceForm.value.name,
+      description: this.conferenceForm.value.description,
+      managersList: [{ id: this.managerId }],
+      year : d.getFullYear(),
+      month : d.getMonth(),
+      day : d.getDay(),
+      hour: this.conferenceForm.value.time.substr(0, 2),
+      min: this.conferenceForm.value.time.substr(3, 2)
+    };
+
+    console.log(conference);
+
+    
+
+    this.conferenceService.addConference(conference).subscribe(data => // antes estamos a fazer push do conferenceForm
+      this.managerConferences.push(data));
+
     this.conferenceForm.reset();
   }
 
-openModal(template: TemplateRef<any>) {
-  this.modalRef = this.modalService.show(template);
-}
+  shareLink(conferenceId: number) {
 
-deleteConference(x){
-  
-    console.log("quero apagar esta conferenceia");
-    console.log(this.managerConferences);
-    
-    this.managerConferences.splice(x, 1);
-    console.log(this.managerConferences);
-    
+    window.alert('http://localhost:4200/home/manager/conferences/' + conferenceId);
+
   }
-  
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  openModalEdit(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  onEditSubmit(conferenceId) {
+
+    this.conferenceService.getConferenceById(conferenceId).subscribe((data: any[]) => {
+      console.log(data);
+      this.managerConferences = data;
+      console.log(this.managerConferences);
+
+    });
+
+  }
+
+  deleteConference(conferenceId: number) { //temos de ir ao get all conference deletar
+
+    this.conferenceService.deleteConferenceById(conferenceId).subscribe((data: any) => { 
+      console.log(data);
+
+    });
+
+    for(let i=0;i<this.managerConferences.length;i++){
+      
+      if(this.managerConferences[i].id==conferenceId){
+      console.log(this.managerConferences[i]);
+      this.managerConferences.splice(i, 1);
+    }
+  }
+
+  }
+
   ngOnInit() {
     //this.managerId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(localStorage.getItem("currentUser"));
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     this.managerId = currentUser.id;
-    console.log("sabes");
-    this.conferenceService.getAllConferences(this.managerId).subscribe( (data:any[]) => {
+
+    this.conferenceService.getAllConferencesByUserId(this.managerId).subscribe((data: any[]) => { //any[] está à espera de receber um array
       console.log(data);
       this.managerConferences = data;
+      
+
+    });
+    this.conferenceForm = this.conferenceBuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      date: ['', Validators.required],
+      time: ['', Validators.required],
+      Id: [this.managerId],
     });
 
+
   }
-  
+
 }

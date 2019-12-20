@@ -11,6 +11,7 @@ import { AuthService } from '../core/services/auth.service';
 export class HomeComponent implements OnInit {
 
   role = "";
+  managerName: any;
 
   currentUser: any;
 
@@ -27,6 +28,8 @@ logout() {
 
   ngOnInit() {
     this.role = localStorage.getItem("currentUserRole");
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    this.managerName = currentUser.userName;
   }
 
 }

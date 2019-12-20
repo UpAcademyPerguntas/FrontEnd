@@ -13,7 +13,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     HomeComponent,
-    AdminComponent
+    AdminComponent,
+    
   ],
   imports: [
     CommonModule,
