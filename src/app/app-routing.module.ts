@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { QuestionsComponent} from'./questions/questions.component';
+import { QuestionsComponent} from './questions/questions.component';
 import { AuthGuard } from './core/guard/auth.guard';
 
 
@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-    //canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -26,19 +26,7 @@ const routes: Routes = [
     path: 'questions',
     component: QuestionsComponent
   },
-  {     // otherwise redirect to home
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-
-  {
-    path: 'questions',
-    component: QuestionsComponent
-  },
-
-
-  {     // otherwise redirect to home
+   {     // otherwise redirect to home
     path: '**', redirectTo: 'login'
   }
 ];
