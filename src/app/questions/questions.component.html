@@ -1,25 +1,31 @@
 <p>Conference Questions </p>
 
-<div class="card container" *ngFor="let card of cards">
-    <div class="card-body">
-      <p class="card-text">{{card.msg}}</p>
-      <a href="#" class="btn btn-primary">vote</a>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
+<div class="card container" *ngFor="let card of cards; let i =index">
+  <div class="card-body">
+    <p class="card-text">{{card.questionContent}}</p>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Use an element to toggle between a like/dislike icon -->
+    <i (click)="changeVote(i)" class="fa float-right" [ngClass]="{'fa-thumbs-up': checkIfIncludes(i)==false, 'fa-thumbs-down': checkIfIncludes(i)}"></i>
+
+  </div>
+</div>
+
+
+
+<div class="container mt-5 ">
+
+  <p>Enter your Questions </p>
+
+  <div class="md-form form-sm">
+    <input Input type="text" [(ngModel)]="question.questionContent" id="form1" class="form-control form-control-sm"
+      placeholder="Enter your Question">
+    <label for="form1" class=""></label>
   </div>
 
-
-<div class="container mt-5 " >
-    
-    <p>Enter your Questions</p>
-
-    <div class="md-form form-sm">
-        <input Input type="text" [(ngModel)]="question.questionContent" id="form1" class="form-control form-control-sm"placeholder="Enter your Question">
-        <label for="form1" class=""></label>
-    </div>
-
-    <div _ngcontent-why-c2="" class="form-group">
-      <button _ngcontent-why-c2="" (click)="submitQuestion()" class="btn btn-primary w-50" type="button">Submit</button>
-    </div>
+  <div _ngcontent-why-c2="" class="form-group">
+    <button _ngcontent-why-c2="" (click)="submitQuestion()" class="btn btn-primary w-50" type="button">Submit</button>
   </div>
 
+</div>

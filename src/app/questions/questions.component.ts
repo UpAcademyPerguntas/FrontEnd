@@ -12,13 +12,9 @@ import { QuestionService } from '../core/services/question.service';
 })
 export class QuestionsComponent implements OnInit {
   public cards = [
-    {
-      msg: "qwerty asdfgh zxcvb"
-    },
-    {
-      msg: "qwerty  zxcvb"
-    }
   ]
+
+  votedQuestion=[];
   // criar o objeto para por no ng model
   //criaçao  da variavel
     question = {
@@ -29,17 +25,29 @@ export class QuestionsComponent implements OnInit {
   constructor(private questionService:QuestionService){}
 
   ngOnInit() {
-    this.questionService.getAll().subscribe( data => {
-      console.log(data);
+    this.questionService.getAll().subscribe( (data:any) => {
+      this.cards=data;
+      this.cards.map(card => {
+        card.votedQuestion = false;
+      })
+      console.log(this.cards);
+    })
+  }
+// esta função retorna o pedido submitButton
+  submitQuestion(){
+    this.questionService.addQuestion(this.question).subscribe( dataQuestions => {
+      console.log(dataQuestions);
+      this.cards.push (this.question)
       
     })
   }
-// esta função retorna o pedido
-  submitQuestion(){
-    this.questionService.addQuestion(this.question).subscribe( data => {
-      console.log(data);
-      
-    })
+
+  changeVote(index){
+   this.cards[index].votedQuestion = !this.cards[index].votedQuestion;
+  }
+
+  checkIfIncludes(index){
+    return this.cards[index].votedQuestion;
   }
 
 }
