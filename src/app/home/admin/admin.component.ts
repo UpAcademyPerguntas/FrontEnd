@@ -36,9 +36,9 @@ export class AdminComponent implements OnInit {
   createManager() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-      dialogConfig.id = "modal-component";
-      dialogConfig.height = "350px";
-      dialogConfig.width = "600px";
+    dialogConfig.id = 'modal-component';
+    dialogConfig.height = '350px';
+    dialogConfig.width = '600px';
       // tslint:disable-next-line: align
       this.matDialog.open(ModalComponent, dialogConfig)
         .beforeClose().subscribe((data: any) => {
@@ -47,13 +47,13 @@ export class AdminComponent implements OnInit {
         });
   }
   addDataToTable(data) {
-    let array = [...this.fieldArray.data, data];
+    const array = [...this.fieldArray.data, data];
     this.fieldArray.data = array;
-    //this.changeDetectorRefs.detectChanges();
+    // this.changeDetectorRefs.detectChanges();
     console.log(this.fieldArray);
 
   }
-  deleteData(index){
+  deleteData(index) {
     console.log(index);
 
     this.fieldArray.data.splice(index, 1);

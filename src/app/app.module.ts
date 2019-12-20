@@ -38,6 +38,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
   ],
   providers: [],
-  bootstrap: [AppComponent,],
+  bootstrap: [AppComponent, ],
 })
 export class AppModule { }

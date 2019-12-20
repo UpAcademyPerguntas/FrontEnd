@@ -9,11 +9,13 @@ import { HomeRoutingModule } from './home-routing.module';
 import { AdminComponent } from './admin/admin.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    AdminComponent
+    AdminComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +24,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     ReactiveFormsModule,
     MatTableModule,
     MatDialogModule
-  ]
+  ],
+  entryComponents: [ ModalComponent]
 })
 export class HomeModule { }

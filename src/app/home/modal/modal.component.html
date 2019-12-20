@@ -1,17 +1,13 @@
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="name">Name</label>
-      <input [(ngModel)]="user.name" class="form-control" id="inputName">
-    <div class="form-group col-md-6">
-      <label for="username">Username</label>
-      <input [(ngModel)]="user.userName"  class="form-control" id="inputUsername">
-      <div class="form-group col-md-6">
-        <label for="inputPassword">Password</label>
-        <input [(ngModel)]="user.password" class="form-control" id="inputPassword">
-        <input type="button" class="btn btn-primary" value="Submit" [mat-dialog-close]="user">
-      </div>
-    </div>
-    </div>
+ <div class="bg-modal">
+  <div class="modal-content">
+    <div class="close">+</div>
+    <h4>New Manager</h4>
+    <div class="md-form mb-5">
+      <input [(ngModel)]="user.name" class="form-control" placeholder="Name">
+      <input [(ngModel)]="user.userName"  class="form-control" placeholder="Username">
+      <input [(ngModel)]="user.password" class="form-control" placeholder="Password">
+      <input type="button" class="btn btn-primary" value="Submit" [mat-dialog-close]="user">
   </div>
+</div>
 
