@@ -4,10 +4,11 @@
     <div class="close">+</div>
     <h4>New Manager</h4>
     <div class="md-form mb-5">
-      <input [(ngModel)]="user.name" class="form-control" placeholder="Name">
       <input [(ngModel)]="user.userName"  class="form-control" placeholder="Username">
       <input [(ngModel)]="user.password" class="form-control" placeholder="Password">
-      <input type="button" class="btn btn-primary" value="Submit" [mat-dialog-close]="user">
+      <input [(ngModel)]="user.confirmPassword" (keyup)="validatePassword()" class="form-control" placeholder="Confirm Password">
+      <p *ngIf="error">The passwords not match</p>
+      <button type="button" class="btn btn-primary" [disabled]="error" [mat-dialog-close]="user">Submit</button>
   </div>
 </div>
 
