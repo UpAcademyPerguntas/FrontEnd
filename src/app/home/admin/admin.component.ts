@@ -4,7 +4,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdminService } from 'src/app/core/services/admin.service';
 import {MatPaginator} from '@angular/material/paginator';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+
 
 export interface PeriodicElement {
   name: string;
