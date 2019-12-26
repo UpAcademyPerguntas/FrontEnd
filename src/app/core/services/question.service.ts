@@ -18,4 +18,11 @@ export class QuestionService {
         return this.http.get(`${environment.apiUrl}/question/getAll`);
     }
 
+    getVoteCountByQuestionId(id:number){
+        return this.http.get(`${environment.apiUrl}/vote/count/question/`+id)
+    }
+
+   
+
+
   }
