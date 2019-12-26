@@ -10,6 +10,8 @@ import { AdminComponent } from './admin/admin.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,10 @@ import { ModalComponent } from './modal/modal.component';
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   entryComponents: [ ModalComponent]
 })
