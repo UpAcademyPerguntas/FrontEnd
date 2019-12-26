@@ -29,7 +29,7 @@ export class ConferenceService {
   addConference(conference) {
     this.conferences.push(conference);
     return this.http.post(`${environment.apiUrl}/conference/`,conference);
-   
+
     //this.conferences$.next(this.conferences);
   }
 
