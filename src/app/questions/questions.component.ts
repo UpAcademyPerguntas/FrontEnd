@@ -37,13 +37,14 @@ export class QuestionsComponent implements OnInit {
   submitQuestion(){
     this.questionService.addQuestion(this.question).subscribe( dataQuestions => {
       console.log(dataQuestions);
-      this.cards.push (this.question)
+      this.cards.push (dataQuestions)
       
     })
   }
 
   changeVote(index){
    this.cards[index].votedQuestion = !this.cards[index].votedQuestion;
+   
   }
 
   checkIfIncludes(index){
