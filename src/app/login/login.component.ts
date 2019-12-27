@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   error: string;
 
-
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -32,7 +31,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = new FormGroup({
       userName: new FormControl('', [Validators.required]),
-      password:  new FormControl('', [Validators.required])
+      password: new FormControl('', [Validators.required])
     });
 
   }
@@ -42,8 +41,10 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+
+
   onSubmit() {
-    console.log('entrei');
+    // console.log('entrei');
 
     this.submitted = true;
     // stops here if the form is invalid
@@ -55,16 +56,16 @@ export class LoginComponent implements OnInit {
       .pipe(first()).subscribe(data => {
         console.log(data);
 
-
         if (this.authService.currentUserValue.role === 'manager') {
           this.router.navigate(['/home/manager']);
         } else if (this.authService.currentUserValue.role === 'admin') {
           this.router.navigate(['/home/admin']);
-          //meter depois para onde reencaminhar mesmo
-
-        }//falta fazer o else
+        }
       },
         error => {
+          console.log(error.error);
+          error = JSON.stringify(error.error);
+
           this.error = error;
           this.loading = false;
         });
