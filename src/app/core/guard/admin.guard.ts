@@ -6,7 +6,7 @@ import { AuthService } from '../services';
 @Injectable({
   providedIn: 'root'
 })
-export class RoleGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(
     private router: Router,
     private authservice: AuthService
@@ -16,13 +16,14 @@ export class RoleGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const currentUser = this.authservice.currentRole;
-    if (currentUser === 'admin') {
+    const currentUserRole =  JSON.parse(localStorage.getItem('currentUserRole'));
+    console.log(currentUserRole);
+
+    if (currentUserRole == 'manager') {
+      this.router.navigate(['/home/manager/conferences']);
       return false;
       //para negar acesso
     }
-
-    // perguntar se se pode apagar
     return true;
   }
 

@@ -1,5 +1,38 @@
-.image{
-    height:40em; background-size:cover; width:auto;
-    background-image:url("https://automais.autosport.pt/wp-content/uploads/2018/10/P90325802-critical-techworks-a-bmw-group-critical-software-company-10-2018-2121px.jpg");
-    background-position:50% 50%;
-  }
+.image {
+  height: 40em;
+  background-size: cover;
+  width: auto;
+  background-image: url("https://automais.autosport.pt/wp-content/uploads/2018/10/P90325802-critical-techworks-a-bmw-group-critical-software-company-10-2018-2121px.jpg");
+  background-position: 50% 50%;
+}
+
+.navbar{
+  padding: 15px;
+  background-image: url("https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg");
+  background-size: 170px;
+  background-position: 2% 50%;
+  background-repeat: no-repeat;
+  background-color: rgba(28, 26, 85);
+  color: white;
+
+
+}
+.user{
+  margin-left: 200px;
+  font-size: 18px;
+  color: white;
+}
+
+.logout{
+
+  padding: 10px 20px;
+  border-radius: 10px 10px;
+  border:1px solid white;
+  color: white;
+
+}
+
+.logout:hover {
+  background-color:rgb(25, 196, 194)
+
+}

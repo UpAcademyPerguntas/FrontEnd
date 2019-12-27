@@ -1,3 +1,40 @@
-table {
+.mat-elevation-z8{
   width: 100%;
+  align-content: center;
+  margin: auto;
+
+}
+
+table{
+ width: 100%;
+ }
+
+ .mat-column-actions{
+  width: 30%;
+ }
+
+ .createManButton{
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.size {
+  width: 80%;
+  margin: auto;
+}
+
+.filter{
+  font-size: 15px;
+  width: 100%;
+
+}
+
+.background{
+  background-color: rgb(28, 26, 85);
+  height: 100vh;
+}
+
+input{
+  color: white;
 }
