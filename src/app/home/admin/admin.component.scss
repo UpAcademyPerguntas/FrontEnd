@@ -1,5 +1,5 @@
 .mat-elevation-z8{
-  width: 70%;
+  width: 100%;
   align-content: center;
   margin: auto;
 
@@ -19,9 +19,22 @@ table{
   text-align: center;
 }
 
-.filter{
-  font-size: 15px;
-  width: 70.1%;
-  margin-left: 134px;
+.size {
+  width: 80%;
+  margin: auto;
 }
 
+.filter{
+  font-size: 15px;
+  width: 100%;
+
+}
+
+.background{
+  background-color: rgb(28, 26, 85);
+  height: 100vh;
+}
+
+input{
+  color: white;
+}
