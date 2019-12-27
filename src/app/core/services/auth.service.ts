@@ -32,7 +32,6 @@ export class AuthService {
   login(userName, password) {
     console.log(userName, password);
 
-    //com backend
     return this.http.post(`${environment.apiUrl}/user/auth`, {'userName': userName, 'password': password, 'role': null })
       .pipe(map((user:any) => {
         //store user details in local storage to keep the user logged in
@@ -45,29 +44,12 @@ export class AuthService {
 
   }
 
-  // public login(userName, password): ReplaySubject<any> {
-  //   // Simulate Jax-rs Api request
-  //   if (userName === 'admin' && password === 'admin') {
-  //     this.currUserTemp.id = 1;
-  //     this.currUserTemp.userName = 'Ze Carlos';
-  //     this.currUserTemp.role = 'manager';
-  //   }
-  //   const response: ReplaySubject<any> = new ReplaySubject(1);
-  //   if ( this.currUserTemp.id) {
-  //     response.next( this.currUserTemp);
-  //   } else {
-  //     response.error({ msg: 'Deu erro' });
-  //   }
-  //   this.currentUserSubject.next(this.currUserTemp);
-  //   return response;
-  // }
 
 
   logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    // this.router.navigate([]) //meter a pagina para onde tem de ir
   }
 
 }

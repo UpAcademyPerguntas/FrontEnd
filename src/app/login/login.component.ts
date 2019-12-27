@@ -56,14 +56,11 @@ export class LoginComponent implements OnInit {
       .pipe(first()).subscribe(data => {
         console.log(data);
 
-
         if (this.authService.currentUserValue.role === 'manager') {
           this.router.navigate(['/home/manager']);
         } else if (this.authService.currentUserValue.role === 'admin') {
           this.router.navigate(['/home/admin']);
-          //meter depois para onde reencaminhar mesmo
-
-        }//falta fazer o else
+        }
       },
         error => {
           console.log(error.error);

@@ -7,15 +7,27 @@
 }
 
 .navbar{
-background-color:  rgb(28, 26, 85);
+  padding: 15px;
+  background-image: url("https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg");
+  background-size: 170px;
+  background-position: 2% 50%;
+  background-repeat: no-repeat;
+  background-color: rgba(28, 26, 85);
+  color: white;
 
+
+}
+.user{
+  margin-left: 200px;
+  font-size: 18px;
+  color: white;
 }
 
 .logout{
 
   padding: 10px 20px;
   border-radius: 10px 10px;
-  border: white;
+  border:1px solid white;
   color: white;
 
 }

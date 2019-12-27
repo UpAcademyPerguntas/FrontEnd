@@ -1,6 +1,7 @@
 <nav class="navbar">
   <!-- navbar navbar-expand-lg navbar-light bg-primary font-weight-bold -->
-  <a class="navbar-brand mb-0 h1 text-white" routerLink="" translate>CTW Conferences Page, Welcome {{ managerName }}</a>
+  <!--routerLink=""  -->
+  <a class="user"  translate> Welcome {{ managerName }}</a>
   <ul class="navbar-nav mr-auto">
     <li class="nav-item" *ngIf="role == 'manager'">
       <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/" translate>Home</a>
