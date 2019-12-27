@@ -23,7 +23,7 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'questions',
+    path: 'conference/:id/questions',
     component: QuestionsComponent
   },
    {     // otherwise redirect to home

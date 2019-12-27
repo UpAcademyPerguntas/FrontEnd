@@ -1,0 +1,34 @@
+.green {
+    background-color: green;
+   }
+
+   input,
+textarea {
+  margin: 5px 0;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input:invalid,
+select:invalid,
+textarea:invalid {
+  border-color: red;
+}
+
+.btn-azulctw {
+    background-color: rgb(25, 196, 194);
+    color: white;  
+    border: yellow;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 20px;
+}
+
+.azulctw {
+    color: rgb(28, 26, 85);
+}
+
+.verdectw{
+    color: rgb(25, 196, 194);
+}
