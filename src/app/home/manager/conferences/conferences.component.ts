@@ -11,13 +11,13 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './conferences.component.html',
   styleUrls: ['./conferences.component.scss']
 })
-export class ConferencesComponent implements OnInit {
 
+export class ConferencesComponent implements OnInit {
   managerId: number;
   conferenceForm: FormGroup;
   managerConferences: any[] = [];
   modalRef: BsModalRef;
-  conferenceCount: number;
+  conferenceToEdit: number;
 
   //criar uma variavel que é da class ConferenceService
   constructor(
@@ -26,53 +26,63 @@ export class ConferencesComponent implements OnInit {
     private modalService: BsModalService,
     private activatedRoute: ActivatedRoute,
   ) {
+  }
+
+  openModalSubmit(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  openModalEdit(template: TemplateRef<any>, conferenceId: number) {
+    this.modalRef = this.modalService.show(template);
+
+    console.log(conferenceId);
+    console.log(this.managerConferences);
+
+    for (let i = 0; i < this.managerConferences.length; i++) {
+      if (this.managerConferences[i].id == conferenceId){
+
+        console.log(this.managerConferences[i]);
+        
+        this.conferenceToEdit = i;
+  
+        console.log(i);
+      }
+      
+    }
+
 
   }
 
   onSubmit() {
-
-    //this.managerConferences.push(this.conferenceForm.value);
-    console.log(this.managerConferences);
-
+    //this.managerConferences.push(this.conferenceForm.value);    
     let d: Date = this.conferenceForm.value.date;
-    let time = this.conferenceForm.value.time;
+    //let time = this.conferenceForm.value.time;
 
     const conference = {
       name: this.conferenceForm.value.name,
       description: this.conferenceForm.value.description,
       managersList: [{ id: this.managerId }],
-      year : d.getFullYear(),
-      month : d.getMonth(),
-      day : d.getDay(),
+      year: d.getFullYear(),
+      month: d.getMonth(),
+      day: d.getDay(),
       hour: this.conferenceForm.value.time.substr(0, 2),
       min: this.conferenceForm.value.time.substr(3, 2)
     };
 
     console.log(conference);
 
-
-
-    this.conferenceService.addConference(conference).subscribe(data => // antes estamos a fazer push do conferenceForm
+    this.conferenceService.addConference(conference).subscribe(data => // antes estavamos a fazer push do conferenceForm
       this.managerConferences.push(data));
 
     this.conferenceForm.reset();
   }
 
   shareLink(conferenceId: number) {
-
-    window.alert('http://localhost:4200/home/manager/conferences/' + conferenceId);
-
+    window.alert('http://localhost:4200/conference/'+ conferenceId + '/questions');
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
 
-  openModalEdit(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
-
-  onEditSubmit(conferenceId) {
+  /*onEditSubmit(conferenceId) {
 
     this.conferenceService.getConferenceById(conferenceId).subscribe((data: any[]) => {
       console.log(data);
@@ -81,22 +91,21 @@ export class ConferencesComponent implements OnInit {
 
     });
 
-  }
+  }*/
 
-  deleteConference(conferenceId: number) { //temos de ir ao get all conference deletar
+
+  deleteConference(conferenceId: number) {
 
     this.conferenceService.deleteConferenceById(conferenceId).subscribe((data: any) => {
       console.log(data);
-
     });
 
-    for(let i=0;i<this.managerConferences.length;i++){
-
-      if(this.managerConferences[i].id==conferenceId){
-      console.log(this.managerConferences[i]);
-      this.managerConferences.splice(i, 1);
+    for (let i = 0; i < this.managerConferences.length; i++) {
+      if (this.managerConferences[i].id == conferenceId) {
+        console.log(this.managerConferences[i]);
+        this.managerConferences.splice(i, 1);
+      }
     }
-  }
 
   }
 
@@ -110,6 +119,8 @@ export class ConferencesComponent implements OnInit {
       console.log(data);
       this.managerConferences = data;
 
+      console.log(this.managerConferences);
+
 
     });
     this.conferenceForm = this.conferenceBuilder.group({
@@ -122,5 +133,6 @@ export class ConferencesComponent implements OnInit {
 
 
   }
+
 
 }
