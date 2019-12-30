@@ -18,11 +18,24 @@ export class QuestionService {
         return this.http.get(`${environment.apiUrl}/question/getAll`);
     }
 
-    getVoteCountByQuestionId(id:number){
-        return this.http.get(`${environment.apiUrl}/vote/count/question/`+id)
+    getAllNewQuestions(lastQuestionTime,conferenceId){
+        return this.http.get(`${environment.apiUrl}/question/conference/`+conferenceId+`/time/`+lastQuestionTime);
     }
 
-   
+    deleteQuestion(questionId){
+        return this.http.delete(`${environment.apiUrl}/question/`+questionId);
+    }
 
+    addVote(vote){
+        return this.http.post(`${environment.apiUrl}/vote`, vote);
+    }
+
+    getAllNewVotes(lastVoteTime,questionId){
+        return this.http.get(`${environment.apiUrl}/vote/question/`+questionId+`/time/`+lastVoteTime);
+    }
+
+    deleteVote(voteId){
+        return this.http.delete(`${environment.apiUrl}/vote/`+voteId, {responseType : "text"});
+    }
 
   }

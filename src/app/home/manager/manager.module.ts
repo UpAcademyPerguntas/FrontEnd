@@ -7,6 +7,7 @@ import { AdminComponent } from '../admin/admin.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { ManagerRoutingModule } from './manager-routing.module';
+import { ManagerQuestionsComponent } from './manager-questions/manager-questions.component';
 
 
 
@@ -14,6 +15,7 @@ import { ManagerRoutingModule } from './manager-routing.module';
   declarations: [
     ManagerComponent,
     ConferencesComponent,
+    ManagerQuestionsComponent,
   ],
   imports: [
     CommonModule,
