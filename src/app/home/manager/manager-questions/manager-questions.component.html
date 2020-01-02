@@ -1,1 +1,45 @@
-<p>manager-questions works!</p>
+<div class="row">
+    <div class="page-Header-question col-sm-2">
+      <img class="question-Logo" src="/assets/Images/QuestionLogo.jpg">
+    </div>
+    <div class="page-Header-ctw col-sm-8">
+      <img class="ctw-Logo" src="/assets/Images/CTWLogo.jpg">
+    </div>
+  
+  </div>
+  
+  <div class="page-Title">
+      <h2>{{conferenceName}}</h2>
+    <h4><b>Conference Questions</b></h4>
+  </div>
+  
+  <div class="separator"></div>
+  
+  <div class="noQuestionsWarning" [ngClass]="{'questionsListSection': hideQuestionsSection()==false}">
+      <h4><b>No questions have been submited so far or all the questions have been answered.</b></h4>
+  </div>
+  
+  <div [ngClass]="{'questionsListSection': hideQuestionsSection()}">
+    <div class="questions-Title">
+      <h2><b>List</b></h2>
+    </div>
+  
+    <div class="sort-section">
+      <b>Sort: </b> 
+      <select class="select-Option" [(ngModel)]="sortOption" (change)="sort()">
+        <option value="timeAsc">Input order - Asc</option>
+        <option value="timeDesc">Input order - Desc</option>
+        <option value="voteAsc">Votes - Asc</option>
+        <option value="voteDesc" selected>Votes - Desc</option>
+      </select>
+    </div>
+    <div class="card container" id="card" *ngFor="let card of cards; let i =index">
+      <div class="card-body">
+        <p class="card-text"><b>Question({{card.id}}): </b>{{card.questionContent}}</p>
+        
+        <button [disabled]="card.submitedAnswer" (click)="submitAnswered(i)" class="btn btn-primary float-right">Answered</button>
+        <span id="numberOfVotes"><b>Votes: </b>{{card.numberOfVotes}}</span>
+      </div>
+    </div>
+  </div>
+  
