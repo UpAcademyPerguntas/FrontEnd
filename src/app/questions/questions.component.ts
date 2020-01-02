@@ -90,14 +90,13 @@ export class QuestionsComponent implements OnInit {
    
     if(this.cards[index].votedQuestion==false){
     
-    this.cards[index].votedQuestion=true;
     let vote={
       question:{id:this.cards[index].id},
       machineId:this.machineId
     }
 
     this.questionService.addVote(vote).subscribe((aVote:any)=>{
-    
+      this.cards[index].votedQuestion=true;
       this.cards[index].voteId=aVote.id;
       this.cards[index].numberOfVotes++;
       this.cards[index].submitVoteDisabled=false;
