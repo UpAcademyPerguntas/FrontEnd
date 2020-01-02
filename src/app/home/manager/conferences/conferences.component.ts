@@ -17,7 +17,7 @@ export class ConferencesComponent implements OnInit {
   conferenceForm: FormGroup;
   managerConferences: any[] = [];
   modalRef: BsModalRef;
-  conferenceToEdit: number;
+  conferenceIndexToEdit: number;
 
   //criar uma variavel que é da class ConferenceService
   constructor(
@@ -43,9 +43,17 @@ export class ConferencesComponent implements OnInit {
 
         console.log(this.managerConferences[i]);
 
-        this.conferenceToEdit = i;
+        this.conferenceIndexToEdit = i;
 
-        console.log(i);
+        const objToEdit = JSON.parse(JSON.stringify(this.managerConferences[this.conferenceIndexToEdit]));
+        console.log(objToEdit);
+        let arrDate = objToEdit.date.split('-');
+        
+        objToEdit.date = new Date(parseInt(arrDate[0]), parseInt(arrDate[1])-1, parseInt(arrDate[2]));
+
+        this.conferenceForm.patchValue(objToEdit); //
+
+        console.log(this.conferenceIndexToEdit);
       }
 
     }
@@ -55,7 +63,9 @@ export class ConferencesComponent implements OnInit {
 
   onSubmit() {
     console.log(this.conferenceForm);
-    //this.managerConferences.push(this.conferenceForm.value);    
+    //this.managerConferences.push(this.conferenceForm.value);   
+    console.log(this.conferenceForm.value.date);
+     
     let d: Date = this.conferenceForm.value.date;
     //let time = this.conferenceForm.value.time;
     
@@ -83,15 +93,19 @@ export class ConferencesComponent implements OnInit {
   }
 
 
-  onEditSubmit(conferenceId) {
+  onEditSubmit(conferenceIndexToEdit, conferenceId) {
+
+    console.log(conferenceIndexToEdit);
 
     console.log(conferenceId);
+        
 
-    console.log(this.conferenceForm);
+    console.log(this.conferenceForm.value);
     
     let d: Date = this.conferenceForm.value.date;
     
     const conference = {
+      id: conferenceId,
       name: this.conferenceForm.value.name,
       description: this.conferenceForm.value.description,
       managersList: [{ id: this.managerId }],
@@ -104,9 +118,14 @@ export class ConferencesComponent implements OnInit {
 
     console.log(conference);
 
-    this.conferenceService.addConference(conference).subscribe(data => // antes estavamos a fazer push do conferenceForm
-      this.managerConferences.push(data));
+    this.conferenceService.updateConferenceById(conference, conferenceId).subscribe(data => // antes estavamos a fazer push do conferenceForm
+      this.managerConferences.push(data)
+    );
 
+      this.conferenceForm.reset();
+
+      this.managerConferences.splice(conferenceIndexToEdit, 1);
+      
   }
 
 
@@ -137,8 +156,8 @@ export class ConferencesComponent implements OnInit {
 
       console.log(this.managerConferences);
 
-
     });
+
     this.conferenceForm = this.conferenceBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
