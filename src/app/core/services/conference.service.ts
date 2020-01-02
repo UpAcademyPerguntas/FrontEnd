@@ -33,12 +33,14 @@ export class ConferenceService {
     //this.conferences$.next(this.conferences);
   }
 
-  updateConferenceById(conference) {
+  updateConferenceById(conference, conferenceId) {
     this.conferences.push(conference);
+    console.log(conferenceId);
     
-    return this.http.put(`${environment.apiUrl}/conference/`,conference);
+    
+    return this.http.put(`${environment.apiUrl}/conference/`+conferenceId ,conference);
 
-    //this.conferences$.next(this.conferences);
+    
   }
 
 
