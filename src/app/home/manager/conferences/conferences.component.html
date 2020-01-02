@@ -10,7 +10,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="conferenceForm" (ngSubmit)="onSubmit()" class="container mt-5 ">
+    <form [formGroup]="conferenceForm" name="criar" (ngSubmit)="onSubmit()" class="container mb-5">
       <div class="form-group">
           <label for="formGroupNameInput">Conference Name</label>
           <input type="text" formControlName="name" class="form-control"  placeholder="Enter conference name..." required>
@@ -24,7 +24,7 @@
       </div>
       <div class="form-group w-50">
           <label for="formGroupDateInput">Conference Date</label>
-          <input formControlName="date" placeholder="Conference Date" class="form-control" bsDatepicker required>
+          <input formControlName="date" placeholder="Conference Date" class="form-control" bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY'}" required>
       </div>
       
       <div class="form-group w-50">
@@ -32,7 +32,7 @@
           <input type="time" formControlName="time" placeholder="Timepicker" class="form-control" required>
       </div>
   
-      <div class="text-center">
+      <div class="text-center mt-5">
         <p>Do you want to create this conference?</p>
         <button type="submit" [disabled]="!conferenceForm.valid" class="btn btn-primary w-25" [class.green]="conferenceForm.valid" (click)="modalRef.hide()">Create</button>
         <button type="button" class="btn btn-light w-25" (click)="modalRef.hide()" >Cancel</button>
@@ -69,17 +69,16 @@
 
   <ng-template #templateEdit>
     <div class="modal-header" [(ngModel)]="conferenceToEdit">
-      <h4 class="modal-title pull-left">Edit conference</h4>
+      <h4 class="modal-title pull-left">Edit conference </h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="conferenceForm" (ngSubmit)="onSubmit()" class="container mt-5 ">
+      <form [formGroup]="conferenceForm" name="editar" (ngSubmit)="onEditSubmit(conferenceToEdit)" class="container">
         <div class="form-group">
             <label for="formGroupNameInput">Edit conference Name</label>
             <input type="text" formControlName="name" class="form-control" value="{{ managerConferences[conferenceToEdit].name }}">
-            <small id="nameHelp" class="form-text text-muted">This will be the tittle of the conference</small>
         </div>
         <div class="form-group">
             <label for="formGroupDescriptionInput">Conference Description</label>
@@ -89,7 +88,7 @@
         </div>
         <div class="form-group w-50">
             <label for="formGroupDateInput">Conference Date</label>
-            <input formControlName="date" value="{{ managerConferences[conferenceToEdit].date }}" class="form-control" bsDatepicker >
+            <input formControlName="date" class="form-control" value="{{ managerConferences[conferenceToEdit].date }}" bsDatepicker>
         </div>
         
         <div class="form-group w-50">
@@ -99,7 +98,7 @@
     
         <div class="text-center">
           <p>Do you want to create this conference?</p>
-          <button type="submit" [disabled]="!conferenceForm.valid" class="btn btn-primary w-25" (click)="modalRef.hide()">Update Conference</button>
+          <button type="submit" class="btn btn-primary w-25" (click)="modalRef.hide()">Update Conference</button>
           <button type="button" class="btn btn-light w-25" (click)="modalRef.hide()" >Cancel</button>
         </div>
     </form>

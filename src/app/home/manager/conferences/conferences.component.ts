@@ -39,32 +39,33 @@ export class ConferencesComponent implements OnInit {
     console.log(this.managerConferences);
 
     for (let i = 0; i < this.managerConferences.length; i++) {
-      if (this.managerConferences[i].id == conferenceId){
+      if (this.managerConferences[i].id == conferenceId) {
 
         console.log(this.managerConferences[i]);
-        
+
         this.conferenceToEdit = i;
-  
+
         console.log(i);
       }
-      
+
     }
 
 
   }
 
   onSubmit() {
+    console.log(this.conferenceForm);
     //this.managerConferences.push(this.conferenceForm.value);    
     let d: Date = this.conferenceForm.value.date;
     //let time = this.conferenceForm.value.time;
-
+    
     const conference = {
       name: this.conferenceForm.value.name,
       description: this.conferenceForm.value.description,
       managersList: [{ id: this.managerId }],
       year: d.getFullYear(),
-      month: d.getMonth(),
-      day: d.getDay(),
+      month: d.getMonth() + 1,
+      day: d.getDate(),
       hour: this.conferenceForm.value.time.substr(0, 2),
       min: this.conferenceForm.value.time.substr(3, 2)
     };
@@ -78,20 +79,35 @@ export class ConferencesComponent implements OnInit {
   }
 
   shareLink(conferenceId: number) {
-    window.alert('http://localhost:4200/conference/'+ conferenceId + '/questions');
+    window.alert('http://localhost:4200/conference/' + conferenceId + '/questions');
   }
 
 
-  /*onEditSubmit(conferenceId) {
+  onEditSubmit(conferenceId) {
 
-    this.conferenceService.getConferenceById(conferenceId).subscribe((data: any[]) => {
-      console.log(data);
-      this.managerConferences = data;
-      console.log(this.managerConferences);
+    console.log(conferenceId);
 
-    });
+    console.log(this.conferenceForm);
+    
+    let d: Date = this.conferenceForm.value.date;
+    
+    const conference = {
+      name: this.conferenceForm.value.name,
+      description: this.conferenceForm.value.description,
+      managersList: [{ id: this.managerId }],
+      year: d.getFullYear(),
+      month: d.getMonth() + 1,
+      day: d.getDate(),
+      hour: this.conferenceForm.value.time.substr(0, 2),
+      min: this.conferenceForm.value.time.substr(3, 2)
+    };
 
-  }*/
+    console.log(conference);
+
+    this.conferenceService.addConference(conference).subscribe(data => // antes estavamos a fazer push do conferenceForm
+      this.managerConferences.push(data));
+
+  }
 
 
   deleteConference(conferenceId: number) {
