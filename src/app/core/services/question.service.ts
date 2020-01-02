@@ -14,15 +14,44 @@ export class QuestionService {
         return this.http.post(`${environment.apiUrl}/question`, question);
     }
 
+    updateQuestion(questionId,question){
+        return this.http.put(`${environment.apiUrl}/question/`+questionId,question);
+    }
+
     getAll(){
         return this.http.get(`${environment.apiUrl}/question/getAll`);
     }
 
-    getVoteCountByQuestionId(id:number){
-        return this.http.get(`${environment.apiUrl}/vote/count/question/`+id)
+    getAllNewQuestions(lastQuestionTime,conferenceId){
+        return this.http.get(`${environment.apiUrl}/question/conference/`+conferenceId+`/time/`+lastQuestionTime);
     }
 
-   
+    getAllNewAnsweredQuestions(lastAnsweredQuestionTime,conferenceId){
+        return this.http.get(`${environment.apiUrl}/question/conference/`+conferenceId+`/answeredQuestTime/`+lastAnsweredQuestionTime);
+    }
+    
+    deleteQuestion(questionId){
+        return this.http.delete(`${environment.apiUrl}/question/`+questionId);
+    }
 
+    addVote(vote){
+        return this.http.post(`${environment.apiUrl}/vote`, vote);
+    }
+
+    getAllNewVotes(lastVoteTime,questionId){
+        return this.http.get(`${environment.apiUrl}/vote/question/`+questionId+`/time/`+lastVoteTime);
+    }
+
+    getAllVotes(questionId){
+        return this.http.get(`${environment.apiUrl}/vote/getAll/question/`+questionId);
+    }
+
+    deleteVote(voteId){
+        return this.http.delete(`${environment.apiUrl}/vote/`+voteId, {responseType : "text"});
+    }
+
+    getConference(conferenceId){
+        return this.http.get(`${environment.apiUrl}/conference/`+conferenceId);
+    }
 
   }

@@ -1,29 +1,50 @@
-h4{
-  text-align: center;
-  padding: 10px;
-}
-input{
+
+/* input{
 width: 75%;
 display: block;
 margin: 15px auto;
 }
+ */
 
+ .modal-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-field > * {
+  width: 95%;
+  margin: auto;
+}
+
+.username{
+  padding-top: 20px;
+}
 
  .close{
-  position: absolute;
-  right: 10px;
-  font-size: 30px;
-  transform: rotate(45deg);
-  cursor: pointer;
- }
+ position: absolute;
+ right: 20px;
+ padding-bottom: 2px;
+}
 
 
 .submitButton {
-   margin-top: 35px;
-   text-align: center;
-}
+ margin-top: 35px;
+ text-align: center;
+ padding-bottom: 18px;
+ }
 
 p{
-  text-align: center;
+  text-align: left;
   color: red;
 }
+
+// .submitButton{
+// margin-top: 15px;
+// margin-bottom: 20px;
+// text-align: center;
+// background-color: rgb(28, 26, 85);
+// padding: 10px 10px;
+//  border-radius: 10px 10px;
+//   border:1px solid white;
+//   color: white;
+//  }

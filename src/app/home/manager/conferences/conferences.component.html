@@ -10,7 +10,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="conferenceForm" (ngSubmit)="onSubmit()" class="container mt-5 ">
+    <form [formGroup]="conferenceForm" name="criar" (ngSubmit)="onSubmit()" class="container mb-5">
       <div class="form-group">
           <label for="formGroupNameInput">Conference Name</label>
           <input type="text" formControlName="name" class="form-control"  placeholder="Enter conference name..." required>
@@ -24,7 +24,7 @@
       </div>
       <div class="form-group w-50">
           <label for="formGroupDateInput">Conference Date</label>
-          <input formControlName="date" placeholder="Conference Date" class="form-control" bsDatepicker required>
+          <input formControlName="date" placeholder="Conference Date" class="form-control" bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY'}" required>
       </div>
       
       <div class="form-group w-50">
@@ -32,7 +32,7 @@
           <input type="time" formControlName="time" placeholder="Timepicker" class="form-control" required>
       </div>
   
-      <div class="text-center">
+      <div class="text-center mt-5">
         <p>Do you want to create this conference?</p>
         <button type="submit" [disabled]="!conferenceForm.valid" class="btn btn-primary w-25" [class.green]="conferenceForm.valid" (click)="modalRef.hide()">Create</button>
         <button type="button" class="btn btn-light w-25" (click)="modalRef.hide()" >Cancel</button>
@@ -54,13 +54,12 @@
           <p class="card-text">{{ conference.description }}</p>
           <p class="card-text">{{ conference.date }}</p>
           <p class="card-text">{{ conference.time }}</p>
-          <a routerLink="/conference/{{ conference.id }}/questions" routerLinkActive="active" class="btn btn-primary">See Questions! </a>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <a routerLink="/home/manager/conference/{{ conference.id }}/questions" routerLinkActive="active" class="btn btn-primary">See Questions! </a>
         </div>
         <div class="card-footer bg-transparent border-success text-center">
           <button type="button" class="btn btn-outline-primary w-25" (click)="shareLink(conference.id)">Share</button>
           <button type="button" class="btn btn-outline-warning w-25" (click)="openModalEdit(templateEdit, conference.id)" >Edit {{ conference.id }}</button>
-          <button type="button" class="btn btn-outline-danger w-25" (click)="deleteConference(conference.id)">Delete {{ conference.id }}</button>
+          <button type="button" class="btn btn-outline-danger w-25" (click)="deleteConference(conference.id)">Delete</button>
         </div>
       </div>
     </div>
@@ -68,38 +67,37 @@
 
 
   <ng-template #templateEdit>
-    <div class="modal-header" [(ngModel)]="conferenceToEdit">
-      <h4 class="modal-title pull-left">Edit conference</h4>
+    <div class="modal-header" [(ngModel)]="conferenceIndexToEdit">
+      <h4 class="modal-title pull-left">Edit conference </h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="conferenceForm" (ngSubmit)="onSubmit()" class="container mt-5 ">
+      <form [formGroup]="conferenceForm" name="editar" (ngSubmit)="onEditSubmit(conferenceIndexToEdit, managerConferences[conferenceIndexToEdit].id)" class="container">
         <div class="form-group">
             <label for="formGroupNameInput">Edit conference Name</label>
-            <input type="text" formControlName="name" class="form-control" value="{{ managerConferences[conferenceToEdit].name }}">
-            <small id="nameHelp" class="form-text text-muted">This will be the tittle of the conference</small>
+            <input type="text" formControlName="name" class="form-control" >
         </div>
         <div class="form-group">
             <label for="formGroupDescriptionInput">Conference Description</label>
                 <div class="input-group">
-                    <textarea formControlName="description" class="form-control" aria-label="With textarea" value="{{ managerConferences[conferenceToEdit].description }}"></textarea>
+                    <textarea formControlName="description" class="form-control" aria-label="With textarea"></textarea>
                 </div>
         </div>
         <div class="form-group w-50">
             <label for="formGroupDateInput">Conference Date</label>
-            <input formControlName="date" value="{{ managerConferences[conferenceToEdit].date }}" class="form-control" bsDatepicker >
+            <input formControlName="date" class="form-control" bsDatepicker>
         </div>
         
         <div class="form-group w-50">
             <label for="formGroupTimeInput2">Conference Starting Time</label>
-            <input type="time" formControlName="time"  value="{{ managerConferences[conferenceToEdit].time }}" class="form-control">
+            <input type="time" formControlName="time" class="form-control">
         </div>
     
         <div class="text-center">
           <p>Do you want to create this conference?</p>
-          <button type="submit" [disabled]="!conferenceForm.valid" class="btn btn-primary w-25" (click)="modalRef.hide()">Update Conference</button>
+          <button type="submit" class="btn btn-primary w-25" (click)="modalRef.hide()">Update</button>
           <button type="button" class="btn btn-light w-25" (click)="modalRef.hide()" >Cancel</button>
         </div>
     </form>

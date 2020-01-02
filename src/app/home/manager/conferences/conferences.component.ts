@@ -17,7 +17,7 @@ export class ConferencesComponent implements OnInit {
   conferenceForm: FormGroup;
   managerConferences: any[] = [];
   modalRef: BsModalRef;
-  conferenceToEdit: number;
+  conferenceIndexToEdit: number;
 
   //criar uma variavel que é da class ConferenceService
   constructor(
@@ -39,32 +39,43 @@ export class ConferencesComponent implements OnInit {
     console.log(this.managerConferences);
 
     for (let i = 0; i < this.managerConferences.length; i++) {
-      if (this.managerConferences[i].id == conferenceId){
+      if (this.managerConferences[i].id == conferenceId) {
 
         console.log(this.managerConferences[i]);
+
+        this.conferenceIndexToEdit = i;
+
+        const objToEdit = JSON.parse(JSON.stringify(this.managerConferences[this.conferenceIndexToEdit]));
+        console.log(objToEdit);
+        let arrDate = objToEdit.date.split('-');
         
-        this.conferenceToEdit = i;
-  
-        console.log(i);
+        objToEdit.date = new Date(parseInt(arrDate[0]), parseInt(arrDate[1])-1, parseInt(arrDate[2]));
+
+        this.conferenceForm.patchValue(objToEdit); //
+
+        console.log(this.conferenceIndexToEdit);
       }
-      
+
     }
 
 
   }
 
   onSubmit() {
-    //this.managerConferences.push(this.conferenceForm.value);    
+    console.log(this.conferenceForm);
+    //this.managerConferences.push(this.conferenceForm.value);   
+    console.log(this.conferenceForm.value.date);
+     
     let d: Date = this.conferenceForm.value.date;
     //let time = this.conferenceForm.value.time;
-
+    
     const conference = {
       name: this.conferenceForm.value.name,
       description: this.conferenceForm.value.description,
       managersList: [{ id: this.managerId }],
       year: d.getFullYear(),
-      month: d.getMonth(),
-      day: d.getDay(),
+      month: d.getMonth() + 1,
+      day: d.getDate(),
       hour: this.conferenceForm.value.time.substr(0, 2),
       min: this.conferenceForm.value.time.substr(3, 2)
     };
@@ -78,20 +89,44 @@ export class ConferencesComponent implements OnInit {
   }
 
   shareLink(conferenceId: number) {
-    window.alert('http://localhost:4200/conference/'+ conferenceId + '/questions');
+    window.alert('http://localhost:4200/conference/' + conferenceId + '/questions');
   }
 
 
-  /*onEditSubmit(conferenceId) {
+  onEditSubmit(conferenceIndexToEdit, conferenceId) {
 
-    this.conferenceService.getConferenceById(conferenceId).subscribe((data: any[]) => {
-      console.log(data);
-      this.managerConferences = data;
-      console.log(this.managerConferences);
+    console.log(conferenceIndexToEdit);
 
-    });
+    console.log(conferenceId);
+        
 
-  }*/
+    console.log(this.conferenceForm.value);
+    
+    let d: Date = this.conferenceForm.value.date;
+    
+    const conference = {
+      id: conferenceId,
+      name: this.conferenceForm.value.name,
+      description: this.conferenceForm.value.description,
+      managersList: [{ id: this.managerId }],
+      year: d.getFullYear(),
+      month: d.getMonth() + 1,
+      day: d.getDate(),
+      hour: this.conferenceForm.value.time.substr(0, 2),
+      min: this.conferenceForm.value.time.substr(3, 2)
+    };
+
+    console.log(conference);
+
+    this.conferenceService.updateConferenceById(conference, conferenceId).subscribe(data => // antes estavamos a fazer push do conferenceForm
+      this.managerConferences.push(data)
+    );
+
+      this.conferenceForm.reset();
+
+      this.managerConferences.splice(conferenceIndexToEdit, 1);
+      
+  }
 
 
   deleteConference(conferenceId: number) {
@@ -121,8 +156,8 @@ export class ConferencesComponent implements OnInit {
 
       console.log(this.managerConferences);
 
-
     });
+
     this.conferenceForm = this.conferenceBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],

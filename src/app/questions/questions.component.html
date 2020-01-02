@@ -1,33 +1,64 @@
-<p>Conference Questions </p>
+<div class="row">
+  <div class="page-Header-question col-sm-2">
+    <img class="question-Logo" src="/assets/Images/QuestionLogo.jpg">
+  </div>
+  <div class="page-Header-ctw col-sm-8">
+    <img class="ctw-Logo" src="/assets/Images/CTWLogo.jpg">
+  </div>
 
-<div class="card container" *ngFor="let card of cards; let i =index">
-  <div class="card-body">
-    <p class="card-text">{{card.questionContent}}</p>
-    <!-- Add icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</div>
 
-    <!-- Use an element to toggle between a like/dislike icon -->
-    <div class="float-right">
-      <i (click)="changeVote(i)" class="fa" [ngClass]="{'fa-thumbs-up': checkIfIncludes(i)==false, 'fa-thumbs-down': checkIfIncludes(i)}"></i>
-      <span>45</span>
+<div class="page-Title">
+    <h2>{{conferenceName}}</h2>
+    <h4><b>Conference Questions</b></h4>
+</div>
+
+<div class="separator"></div>
+
+<div class="submitQuestion">
+
+  <h5>Ask your Question!</h5>
+  
+  <input type="text" [(ngModel)]="question.questionContent" placeholder="Enter your Question">
+  
+  <div _ngcontent-why-c2="" class="form-group">
+    <button _ngcontent-why-c2="" (click)="submitQuestion()" [disabled]="submitQuestionDisabled" class="submitButton" type="button">Submit</button>
+  </div>
+
+</div>
+
+<div class="separator2"></div>
+<br><br>
+<div class="separator"></div>
+
+<div [ngClass]="{'questionsListSection': hideQuestionsSection()}">
+  <div class="questions-Title">
+    <h2><b>Questions List</b></h2>
+    <h4>Vote!</h4>
+  </div>
+
+  <div class="sort-section">
+    <b>Sort: </b> 
+    <select class="select-Option" [(ngModel)]="sortOption" (change)="sort()">
+      <option value="timeAsc">Input order - Asc</option>
+      <option value="timeDesc">Input order - Desc</option>
+      <option value="voteAsc">Votes - Asc</option>
+      <option value="voteDesc" selected>Votes - Desc</option>
+    </select>
+  </div>
+  <div class="card container" id="card" *ngFor="let card of cards; let i =index">
+    <div class="card-body">
+      <p class="card-text"><b>Question({{card.id}}): </b>{{card.questionContent}}</p>
+      <!-- Add icon library -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <!-- Use an element to toggle between a like/dislike icon -->
+      <i (click)="changeVote(i)" class="fa float-right" [ngClass]="{'fa-thumbs-up': checkIfIncludes(i)==false, 'fa-thumbs-down': checkIfIncludes(i),'disabled-vote-button':checkSubmitVoteDisabled(i)}"></i>
+      <span id="numberOfVotes"><b>Votes: </b>{{card.numberOfVotes}}</span>
     </div>
   </div>
 </div>
 
 
 
-<div class="container mt-5 ">
 
-  <p>Enter your Questions </p>
-
-  <div class="md-form form-sm">
-    <input Input type="text" [(ngModel)]="question.questionContent" id="form1" class="form-control form-control-sm"
-      placeholder="Enter your Question">
-    <label for="form1" class=""></label>
-  </div>
-
-  <div _ngcontent-why-c2="" class="form-group">
-    <button _ngcontent-why-c2="" (click)="submitQuestion()" class="btn btn-primary w-50" type="button">Submit</button>
-  </div>
-
-</div>
