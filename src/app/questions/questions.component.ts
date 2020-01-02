@@ -16,30 +16,37 @@ export class QuestionsComponent implements OnInit {
   public cards = [
   ]
 
-  conferenceId;
+  conferenceId:string;
+  conferenceName;
+
   lastQuestionTime:number=0;
+  lastAnsweredQuestionTime:number=0;
+
   machineId:string;
   submitQuestionDisabled=false;
   sortOption:string;
 
   question= {
     questionContent:'',
-    conference : {id: 0},
-  
+    conference : {id:this.conferenceId},
+    answered:false,
+    answeredAt:0
   };
 
-  constructor(private questionService:QuestionService,private activeRoute: ActivatedRoute){
-    
-      this.activeRoute.paramMap
-       .subscribe(params => {
-            this.conferenceId= params.get('id');
-            this.question.conference.id = this.conferenceId;
-       });
+  constructor(private questionService:QuestionService, private activeRoute:ActivatedRoute){
 
+    this.activeRoute.paramMap.subscribe(params=>{
+      this.conferenceId=params.get('id');
+      this.question.conference.id=this.conferenceId;
+    });
   }
 
   ngOnInit() {
     
+    this.questionService.getConference(this.conferenceId).subscribe((conference:any)=>{
+      this.conferenceName=conference.name;
+    }, error=>{console.log(error)});
+
     if (localStorage.getItem('machineId')==null ||localStorage.getItem('machineId')==undefined){
         
         this.machineId=Date.now().toString();
@@ -49,8 +56,10 @@ export class QuestionsComponent implements OnInit {
       this.machineId=localStorage.getItem('machineId');
     }
     this.getData();
+    this.correctData();
 
-    setInterval(()=>this.getData(),60000);
+    setInterval(()=>this.getData(),45000);
+    setInterval(()=>this.correctData(),50000);
   }
 
   submitQuestion(){
@@ -147,8 +156,7 @@ export class QuestionsComponent implements OnInit {
 
             let result=this.cards.find(card=>{return question.id==card.id;})
             
-            if(result==undefined){
-              question.lastVoteTime=0,
+            if(result==undefined && question.answered==false){
               question.votedQuestion=false,
               question.voteId=0,
               question.numberOfVotes=0;
@@ -163,27 +171,39 @@ export class QuestionsComponent implements OnInit {
 
       this.cards.map((question,index)=>{
 
-        this.questionService.getAllNewVotes(question.lastVoteTime,question.id)
+        this.questionService.getAllVotes(question.id)
           .subscribe((votes:any[])=>{
 
             if(votes!=null){
               if(votes.length>0){
                 
-                question.lastVoteTime=votes[votes.length-1].createdAt;
-
+                question.numberOfVotes=votes.length;
+                let found=false;            
                 for(let i=0;i<votes.length;i++){
-                  
-                  if(votes[i].id!=question.voteId){
-
-                    question.numberOfVotes++;
-
-                    if(votes[i].machineId==this.machineId){
-                      question.votedQuestion=true;
-                      question.voteId=votes[i].id;
-                    }
+                    
+                  if(votes[i].machineId==this.machineId){
+                    found=true;
+                    question.votedQuestion=true;
+                    question.voteId=votes[i].id;
+                    break;
                   }
                 }
+                if(found==false){
+                  question.votedQuestion=false;
+                  question.voteId=0;
+                }
               }
+              else if(votes.length==0){
+                question.numberOfVotes=0;
+                question.votedQuestion=false;
+                question.voteId=0;
+  
+              }
+            }
+            else{
+              question.numberOfVotes=0;
+              question.votedQuestion=false;
+              question.voteId=0;
             }
             if(index=this.cards.length-1){this.sort();}
             
@@ -250,5 +270,26 @@ export class QuestionsComponent implements OnInit {
       });
       this.cards.reverse();
     }
+  }
+
+  correctData(){
+    console.log('correctData() activated')
+    this.questionService.getAllNewAnsweredQuestions(this.lastAnsweredQuestionTime,this.conferenceId)
+      .subscribe((questions:any[])=>{
+
+        if(questions!=null){
+          if(questions.length>0){
+        
+            this.lastAnsweredQuestionTime=questions[questions.length-1].answeredAt;
+            let index;
+
+            questions.forEach(question=>{
+              index=this.cards.findIndex(card=>{return card.id==question.id;});
+              
+              if(index!=-1){this.cards.splice(index,1);} 
+            });
+          }
+        }
+      },error=>{console.log(error)});
   }
 }

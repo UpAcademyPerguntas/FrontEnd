@@ -54,7 +54,7 @@
           <p class="card-text">{{ conference.description }}</p>
           <p class="card-text">{{ conference.date }}</p>
           <p class="card-text">{{ conference.time }}</p>
-          <a routerLink="/conference/{{ conference.id }}/questions" routerLinkActive="active" class="btn btn-primary">See Questions! </a>
+          <a routerLink="/home/manager/conference/{{ conference.id }}/questions" routerLinkActive="active" class="btn btn-primary">See Questions! </a>
         </div>
         <div class="card-footer bg-transparent border-success text-center">
           <button type="button" class="btn btn-outline-primary w-25" (click)="shareLink(conference.id)">Share</button>

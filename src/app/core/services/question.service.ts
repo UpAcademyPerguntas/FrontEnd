@@ -14,6 +14,10 @@ export class QuestionService {
         return this.http.post(`${environment.apiUrl}/question`, question);
     }
 
+    updateQuestion(questionId,question){
+        return this.http.put(`${environment.apiUrl}/question/`+questionId,question);
+    }
+
     getAll(){
         return this.http.get(`${environment.apiUrl}/question/getAll`);
     }
@@ -22,6 +26,10 @@ export class QuestionService {
         return this.http.get(`${environment.apiUrl}/question/conference/`+conferenceId+`/time/`+lastQuestionTime);
     }
 
+    getAllNewAnsweredQuestions(lastAnsweredQuestionTime,conferenceId){
+        return this.http.get(`${environment.apiUrl}/question/conference/`+conferenceId+`/answeredQuestTime/`+lastAnsweredQuestionTime);
+    }
+    
     deleteQuestion(questionId){
         return this.http.delete(`${environment.apiUrl}/question/`+questionId);
     }
@@ -34,8 +42,16 @@ export class QuestionService {
         return this.http.get(`${environment.apiUrl}/vote/question/`+questionId+`/time/`+lastVoteTime);
     }
 
+    getAllVotes(questionId){
+        return this.http.get(`${environment.apiUrl}/vote/getAll/question/`+questionId);
+    }
+
     deleteVote(voteId){
         return this.http.delete(`${environment.apiUrl}/vote/`+voteId, {responseType : "text"});
+    }
+
+    getConference(conferenceId){
+        return this.http.get(`${environment.apiUrl}/conference/`+conferenceId);
     }
 
   }
