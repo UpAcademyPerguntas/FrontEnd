@@ -24,8 +24,11 @@ const routes: Routes = [
   },
   {
     path: 'conference/:id/questions',
-    component: QuestionsComponent
+    component: QuestionsComponent,
+    //canActivate: [ManagerGuard]
   },
+
+
    {     // otherwise redirect to home
     path: '**', redirectTo: 'login'
   }

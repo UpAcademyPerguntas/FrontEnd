@@ -18,7 +18,9 @@
   // background-size: 30%;
   // background-repeat: no-repeat;
   // background-position: right bottom;
-  background-image: url('https://cdn.pixabay.com/photo/2015/02/27/07/02/background-651749_1280.jpg');
+  background: linear-gradient(rgba(28, 26, 85, 0.411), rgba(28, 26, 85, 0.411)), url('https://cdn.pixabay.com/photo/2017/01/25/15/12/cityscape-2008177_1280.jpg');
+
+  // background-image: url('https://cdn.pixabay.com/photo/2015/02/27/07/02/background-651749_1280.jpg');
   // background-image: url('https://cdn.pixabay.com/photo/2017/10/13/12/59/india-2847587_1280.jpg');
   height: 92vh;
   background-attachment: fixed;
@@ -36,7 +38,7 @@ background-size: 1600px;
   border-radius: 20px 20px;
   margin: auto;
   padding: 5px;
-  height: 300px;
+  height: 320px;
   width: 300px;
   position: fixed;
   top: 0;
