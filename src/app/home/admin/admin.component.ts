@@ -23,7 +23,7 @@ export class AdminComponent implements OnInit {
   public fieldArray =  new MatTableDataSource<any>();
 
   public newAttribute: any = {};
-  displayedColumns: string[] = ['username', 'actions'];
+  displayedColumns: string[] = ['username', 'actions', ];
 
   applyFilter(filterValue: string) {
     this.fieldArray.filter = filterValue.trim().toLowerCase();
