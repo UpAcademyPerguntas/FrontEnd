@@ -15,7 +15,7 @@ const routes: Routes = [
         },
 
         {
-            path: 'conferences/:id/questions',
+            path: 'conference/:id/questions',
             component: ManagerQuestionsComponent
         },
 
