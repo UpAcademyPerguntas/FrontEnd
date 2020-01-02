@@ -16,7 +16,7 @@ export class QuestionsComponent implements OnInit {
   public cards = [
   ]
 
-  conferenceId:number=1;
+  conferenceId;
   lastQuestionTime:number=0;
   machineId:string;
   submitQuestionDisabled=false;
@@ -24,11 +24,19 @@ export class QuestionsComponent implements OnInit {
 
   question= {
     questionContent:'',
-    conference : {id:this.conferenceId},
+    conference : {id: 0},
   
   };
 
-  constructor(private questionService:QuestionService){}
+  constructor(private questionService:QuestionService,private activeRoute: ActivatedRoute){
+    
+      this.activeRoute.paramMap
+       .subscribe(params => {
+            this.conferenceId= params.get('id');
+            this.question.conference.id = this.conferenceId;
+       });
+
+  }
 
   ngOnInit() {
     

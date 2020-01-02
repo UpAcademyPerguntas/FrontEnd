@@ -26,6 +26,7 @@ const routes: Routes = [
     path: 'conference/:id/questions',
     component: QuestionsComponent
   },
+  
    {     // otherwise redirect to home
     path: '**', redirectTo: 'login'
   }
