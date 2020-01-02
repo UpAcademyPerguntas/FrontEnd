@@ -1,11 +1,12 @@
 <div class="background">
  <div class="size">
-
+  <button mat-raised-button (click)="createManager()" class="createManButton" type="submit">Create Manager</button>
    <mat-form-field class="filter">
      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
    </mat-form-field>
 
    <div class="mat-elevation-z8">
+
    <table mat-table [dataSource]="fieldArray" >
 
      <!-- Username -->
@@ -17,7 +18,7 @@
      <ng-container matColumnDef="actions">
        <th mat-header-cell *matHeaderCellDef> Actions </th>
        <td mat-cell *matCellDef="let element; let j = index;">
-         <button mat-raised-button (click)="deleteData(j)" class="btn btn-danger">Delete</button>
+         <button mat-raised-button (click)="deleteData(j)" class="btn btn-outline-danger">Delete</button>
        </td>
      </ng-container>
      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -25,8 +26,6 @@
    </table>
    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons class="paginator"></mat-paginator>
    </div>
-   <div class="createManButton">
-     <button mat-raised-button (click)="createManager()" class="btn btn-primary" type="submit">Create Manager</button>
    </div>
  </div>
-</div>
+

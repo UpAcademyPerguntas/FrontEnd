@@ -12,6 +12,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     MatDialogModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   entryComponents: [ ModalComponent]
 })
