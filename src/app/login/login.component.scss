@@ -5,37 +5,47 @@
   background-size: 170px;
   background-position: 2% 50%;
   background-repeat: no-repeat;
-  background-color: rgba(28, 26, 85);
+  background-color: rgb(28, 26, 85);
+
 
   // background-attachment: fixed;
 }
 
 .body {
-  background-image: url("https://www.criticaltechworks.com/static/images/logo_vectorial_stage2.svg");
-  background-size: 30%;
-  background-repeat: no-repeat;
-  background-position: right bottom;
+  // background-image: url('https://images.pexels.com/photos/1629236/pexels-photo-1629236.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  //  background-image: url('https://www.criticaltechworks.com/static/images/Circulo.svg');
+  // background-image: url("https://www.criticaltechworks.com/static/images/logo_vectorial_stage2.svg");
+  // background-size: 30%;
+  // background-repeat: no-repeat;
+  // background-position: right bottom;
+  background-image: url('https://cdn.pixabay.com/photo/2015/02/27/07/02/background-651749_1280.jpg');
+  // background-image: url('https://cdn.pixabay.com/photo/2017/10/13/12/59/india-2847587_1280.jpg');
+  height: 92vh;
   background-attachment: fixed;
   background-color: rgb(28, 26, 85);
   color: rgb(25, 196, 194);
+  // background-size:100% 100%;
+// background-size: 1535px;
+background-size: 1600px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .box {
-  border: 2px solid rgba(25, 196, 193, 0.486);
+  border: 2px solid rgba(28, 26, 85, 0.356);
   border-radius: 20px 20px;
   margin: auto;
-
-  padding: 8px;
-  height: 350px;
-  width: 350px;
+  padding: 5px;
+  height: 300px;
+  width: 300px;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   text-align: center;
-  background-color: rgba(28, 26, 85, 0.959);
-  box-shadow: 20px 20px 50px 10px rgba(25, 196, 193, 0.178);
+  background-color: rgba(28, 26, 85, 0.658);
+  box-shadow: 20px 20px 50px 10px rgba(106, 121, 120, 0.24);
 }
 
 .form-group {
