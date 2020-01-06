@@ -1,8 +1,14 @@
-.green {
-    background-color: green;
-   }
+.body {
+  background-color: rgb(28, 26, 85);
+  height:100%;
 
-   input,
+}
+
+.green {
+  background-color: green;
+}
+
+input,
 textarea {
   margin: 5px 0;
   padding: 5px 10px;
@@ -17,18 +23,113 @@ textarea:invalid {
 }
 
 .btn-azulctw {
-    background-color: rgb(25, 196, 194);
-    color: white;  
-    border: yellow;
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin: 20px;
+  background-color: rgb(25, 196, 194);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 20px;
 }
 
+.card-footer {
+  background-color: white;
+  border-color: rgb(28, 26, 85);
+}
+
+.btnQuestions {
+  background-color: rgb(28, 26, 85);
+  color: white;
+  border-radius: 10px 10px;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+
+.btnShare {
+  border-color: rgb(28, 26, 85);
+  color: rgb(28, 26, 85);
+  border-radius: 10px 10px;
+  padding: 10px 20px;
+  background-color: transparent;
+  margin-right: 10px;
+  border: solid 2px;
+}
+.btnShare:hover {
+  background-color: rgb(28, 26, 85);
+  color: white;
+}
+
+.btnEdit {
+  border-color: rgb(25, 196, 194);
+  color: rgb(25, 196, 194);
+  border-radius: 10px 10px;
+  border: solid 2px;
+  padding: 10px 20px;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.btnEdit:hover {
+  background-color: rgb(25, 196, 194);
+  color: white;
+}
+
+.btnDelete {
+  border-color: #dc3545;
+  color: #dc3545;
+  border-radius: 10px 10px;
+  border: solid 2px;
+  padding: 10px 20px;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.btnDelete:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.modal-header{
+background-color: rgb(28, 26, 85);
+color: white;
+}
+
+.close{
+  color: white !important;
+}
+
+.btnCreate{
+  border-color: rgb(25, 196, 194);
+  color: rgb(25, 196, 194);
+  border-radius: 10px 10px;
+  border: solid 2px;
+  padding: 10px 20px;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.btnCreate:hover{
+  background-color: rgb(25, 196, 194);
+  color: white;
+}
+
+.btnCancel{
+  border-color: #dc3545;
+  color: #dc3545;
+  border-radius: 10px 10px;
+  border: solid 2px;
+  padding: 10px 20px;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.btnCancel:hover{
+  background-color: #dc3545;
+  color: white;
+}
 .azulctw {
-    color: rgb(28, 26, 85);
+  color: rgb(28, 26, 85);
 }
 
-.verdectw{
-    color: rgb(25, 196, 194);
+.verdectw {
+  color: rgb(25, 196, 194);
 }

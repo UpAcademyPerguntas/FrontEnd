@@ -6,7 +6,7 @@
       <button class="close" mat-stroked-button (click)="closeModal()" tabindex="-1"><mat-icon>clear</mat-icon></button>
     </mat-toolbar>
     <div class="modal-field">
-      <mat-form-field>
+      <mat-form-field class="Username">
         <input matInput placeholder="Username" [(ngModel)]="user.userName" (keyup)="validateUserName(user.userName)" class="username" required>
       </mat-form-field>
       <div>
@@ -23,7 +23,7 @@
       <p *ngIf="error">The passwords don't match</p>
     </div>
     <div class="submitButton">
-      <button type="button"  class="btn btn-outline-info" [disabled]="error || error2 || error3 || error4 || error5" [mat-dialog-close]="user">Submit</button>
+        <button type="button"  class="button" [disabled]="error || error2 || error3 || error4 || error5" [mat-dialog-close]="user">Submit</button>
     </div>
     </div>
     <!-- <div class="md-form mb-5">

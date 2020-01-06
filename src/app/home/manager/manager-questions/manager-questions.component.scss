@@ -1,4 +1,8 @@
-.card-body{ 
+.body{
+  background-color: rgb(26, 28,85);
+  color: white;
+}
+.card-body{
     color: blue ;
 }
 
@@ -7,9 +11,9 @@
 }
 
 .page-Title{
-  margin:15px;
+  // margin:15px;
   text-align: center;
-  color:rgb(0,0,102);
+  color:white;
  // text-shadow: 3px 2px blue;
 }
 
@@ -22,13 +26,13 @@
   padding:15px;
   margin: 30px 0px;
   text-align: center;
-  
+
   background-color:rgb(1, 1, 63);
 }
 
 .question-Logo{
   height: 100%;
-  width: 80%; 
+  width: 80%;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -43,18 +47,18 @@
   height:100%;
 }
 
-.separator{
-  margin:5px 100px;
-  padding:6px;
-  background-color:rgb(1, 1, 63);
-}
+// .separator{
+//   margin:5px 100px;
+//   padding:6px;
+//   background-color:rgb(1, 1, 63);
+// }
 
-.separator2{
-  margin:5px 100px;
-  padding:3px;
-  background-color:#3e8e41;
-}
-  
+// .separator2{
+//   margin:5px 100px;
+//   padding:3px;
+//   background-color:#3e8e41;
+// }
+
 #card{
   width:50%;
   margin-bottom: 20px;

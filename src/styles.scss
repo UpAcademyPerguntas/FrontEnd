@@ -1,18 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~bootstrap/dist/css/bootstrap.min.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+  background-color: #1c1a55;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .size {
-  .mat-form-field-label{
+  .mat-form-field-label {
     color: white !important;
-
   }
-  .mat-form-field-label-wrapper{
+  .mat-form-field-label-wrapper {
     border-bottom: 1px solid white !important;
   }
 }
 
+.mat-dialog-container {
+  box-sizing: content-box !important;
+  height: fit-content !important;
+  background: none;
+  box-shadow: none;
+}
+.mat-toolbar {
+  background-color: rgb(28, 26, 85) !important;
+  color: white;
+}
 
+.bs-datepicker-head {
+  background-color: rgb(28, 26, 85) !important;
+}
