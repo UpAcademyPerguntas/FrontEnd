@@ -15,4 +15,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
+.mat-dialog-container{
+  box-sizing: content-box !important;
+  height: fit-content !important;
+
+}
+.mat-toolbar{
+  background-color: rgb(28, 26, 85) !important;
+  color: white;
+}
 

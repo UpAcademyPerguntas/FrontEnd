@@ -6,7 +6,7 @@
       <button class="close" mat-stroked-button (click)="closeModal()" tabindex="-1"><mat-icon>clear</mat-icon></button>
     </mat-toolbar>
     <div class="modal-field">
-      <mat-form-field>
+      <mat-form-field class="Username">
         <input matInput placeholder="Username" [(ngModel)]="user.userName" (keyup)="validateUserName(user.userName)" class="username" required>
       </mat-form-field>
       <div>
@@ -14,7 +14,7 @@
         <p *ngIf="error4">The Username field can't be left blank.</p>
       </div>
       <mat-form-field>
-        <input matInput placeholder="Password" [(ngModel)]="user.password" required>
+        <input matInput placeholder="Password" [(ngModel)]="user.password" (keyup)="validatePassword()" required>
       </mat-form-field>
       <mat-form-field>
       <input matInput placeholder="Confirm Password" [(ngModel)]="user.confirmPassword" (keyup)="validatePassword()" required>

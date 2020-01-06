@@ -1,12 +1,4 @@
-
-/* input{
-width: 75%;
-display: block;
-margin: 15px auto;
-}
- */
-
- .modal-field {
+.modal-field {
   display: flex;
   flex-direction: column;
 }
@@ -14,37 +6,38 @@ margin: 15px auto;
 .modal-field > * {
   width: 95%;
   margin: auto;
-}
-
-.username{
-  padding-top: 20px;
-}
-
- .close{
- position: absolute;
- right: 20px;
- padding-bottom: 2px;
-}
-
-
-.submitButton {
- margin-top: 35px;
- text-align: center;
- padding-bottom: 18px;
  }
 
-p{
+.Username {
+  padding-top: 15px;
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  padding-bottom: 2px;
+  color: white;
+}
+
+.submitButton {
+  text-align: center;
+  padding-bottom: 1.25em;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 10px 10px;
+  border: 1px solid rgb(25, 196, 194);
+  color: rgb(25, 196, 194);
+  background-color: transparent;
+
+}
+.button:hover{
+  background-color:rgb(25, 196, 194);
+  color: white;
+}
+
+p {
   text-align: left;
   color: red;
 }
-
-// .submitButton{
-// margin-top: 15px;
-// margin-bottom: 20px;
-// text-align: center;
-// background-color: rgb(28, 26, 85);
-// padding: 10px 10px;
-//  border-radius: 10px 10px;
-//   border:1px solid white;
-//   color: white;
-//  }
