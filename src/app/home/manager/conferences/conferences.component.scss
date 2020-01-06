@@ -1,8 +1,8 @@
-.body {
-  background-color: rgb(28, 26, 85);
-  height:100%;
+// .body {
+//   background-color: rgb(28, 26, 85);
+//   height:100%;
 
-}
+// }
 
 .green {
   background-color: green;
@@ -22,6 +22,11 @@ textarea:invalid {
   border-color: red;
 }
 
+#card{
+
+    text-align: left !important;
+
+}
 .btn-azulctw {
   background-color: rgb(25, 196, 194);
   color: white;

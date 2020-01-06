@@ -2,7 +2,7 @@
 <div class="container text-center">
 
   <div class="row d-flex justify-content-center align-items-center" style="margin-top: 50px;">
-        <button type="button" class="btn-azulctw center" (click)="openModal(template)">Create
+        <button type="button" class="btn-azulctw" (click)="openModal(template)">Create
           conference</button>
         <div class="sort-section">
           <b>Filter: </b>
@@ -20,9 +20,7 @@
   </div>
 
 <div class="container text-center">
-  <button type="button" class="btn-azulctw" (click)="openModalSubmit(template)">
-    Create conference modal
-  </button>
+
 
   <ng-template #template>
     <div class="modal-header">
@@ -104,10 +102,7 @@
         <button
           type="button"
           class="btnShare"
-          (click)="shareLink(conference.id)"
-        >
-          Share
-        </button>
+          (click)="openModal(templateShare, conference.id)">Share {{ conference.id }}</button>
         <button
           type="button"
           class="btnEdit"
@@ -126,6 +121,16 @@
     </div>
   </div>
 </div>
+<ng-template #templateShare>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Share this link with attendees</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" [(ngModel)]="conferenceIdShare">http://localhost:4200/conference/{{ conferenceIdShare }}/questions
+  </div>
+</ng-template>
 
 <ng-template #templateEdit>
   <div class="modal-header" [(ngModel)]="conferenceIndexToEdit">
