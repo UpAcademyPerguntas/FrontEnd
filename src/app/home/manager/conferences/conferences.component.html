@@ -5,7 +5,7 @@
         <button type="button" class="btn-azulctw" (click)="openModal(template)">Create
           conference</button>
         <div class="sort-section">
-          <b>Filter: </b>
+          <b class="text-white">Filter: </b>
           <select class="select-Option" [(ngModel)]="sortOption" (change)="sort()">
             <option value="name">Name</option>
             <option value="dateAsc">Date - Asc</option>
@@ -86,7 +86,6 @@
     <div class="col-md-8">
       <div class="card-body">
         <h2 class="card-title">{{ conference.name }}</h2>
-        <h5 class="card-title">Id da conferencia: {{ conference.id }}</h5>
         <p class="card-text">{{ conference.description }}</p>
         <p class="card-text">{{ conference.date }}</p>
         <p class="card-text">{{ conference.time }}</p>
@@ -102,13 +101,13 @@
         <button
           type="button"
           class="btnShare"
-          (click)="openModal(templateShare, conference.id)">Share {{ conference.id }}</button>
+          (click)="openModal(templateShare, conference.id)">Share</button>
         <button
           type="button"
           class="btnEdit"
           (click)="openModalEdit(templateEdit, conference.id)"
         >
-          Edit {{ conference.id }}
+          Edit
         </button>
         <button
           type="button"
@@ -128,7 +127,7 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body" [(ngModel)]="conferenceIdShare">http://localhost:4200/conference/{{ conferenceIdShare }}/questions
+  <div class="modal-body" [(ngModel)]="conferenceIdShare">http://localhost:4200/home/manager/conference/{{ conferenceIdShare }}/questions
   </div>
 </ng-template>
 
