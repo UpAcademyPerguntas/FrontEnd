@@ -27,9 +27,7 @@ const routes: Routes = [
     component: QuestionsComponent,
     //canActivate: [ManagerGuard]
   },
-
-
-   {     // otherwise redirect to home
+    {     // otherwise redirect to home
     path: '**', redirectTo: 'login'
   }
 ];
