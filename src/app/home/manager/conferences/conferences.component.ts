@@ -18,6 +18,9 @@ export class ConferencesComponent implements OnInit {
   managerConferences: any[] = [];
   modalRef: BsModalRef;
   conferenceIndexToEdit: number;
+  sortOption: string;
+  conferenceIdShare: number;
+
 
   //criar uma variavel que é da class ConferenceService
   constructor(
@@ -28,8 +31,18 @@ export class ConferencesComponent implements OnInit {
   ) {
   }
 
-  openModalSubmit(template: TemplateRef<any>) {
+  showWarningNoConference() {
+
+    if (this.managerConferences.length == 0) {
+      return true;
+    }
+    else { return false; }
+  }
+
+  openModal(template: TemplateRef<any>, conferenceId: number) {
     this.modalRef = this.modalService.show(template);
+
+    this.conferenceIdShare = conferenceId;
   }
 
   openModalEdit(template: TemplateRef<any>, conferenceId: number) {
@@ -48,27 +61,26 @@ export class ConferencesComponent implements OnInit {
         const objToEdit = JSON.parse(JSON.stringify(this.managerConferences[this.conferenceIndexToEdit]));
         console.log(objToEdit);
         let arrDate = objToEdit.date.split('-');
-        
-        objToEdit.date = new Date(parseInt(arrDate[0]), parseInt(arrDate[1])-1, parseInt(arrDate[2]));
+
+        objToEdit.date = new Date(parseInt(arrDate[0]), parseInt(arrDate[1]) - 1, parseInt(arrDate[2]));
 
         this.conferenceForm.patchValue(objToEdit); //
 
         console.log(this.conferenceIndexToEdit);
       }
-
     }
-
-
   }
+
+  
 
   onSubmit() {
     console.log(this.conferenceForm);
     //this.managerConferences.push(this.conferenceForm.value);   
     console.log(this.conferenceForm.value.date);
-     
+
     let d: Date = this.conferenceForm.value.date;
     //let time = this.conferenceForm.value.time;
-    
+
     const conference = {
       name: this.conferenceForm.value.name,
       description: this.conferenceForm.value.description,
@@ -88,9 +100,6 @@ export class ConferencesComponent implements OnInit {
     this.conferenceForm.reset();
   }
 
-  shareLink(conferenceId: number) {
-    window.alert('http://localhost:4200/conference/' + conferenceId + '/questions');
-  }
 
 
   onEditSubmit(conferenceIndexToEdit, conferenceId) {
@@ -98,12 +107,12 @@ export class ConferencesComponent implements OnInit {
     console.log(conferenceIndexToEdit);
 
     console.log(conferenceId);
-        
+
 
     console.log(this.conferenceForm.value);
-    
+
     let d: Date = this.conferenceForm.value.date;
-    
+
     const conference = {
       id: conferenceId,
       name: this.conferenceForm.value.name,
@@ -122,10 +131,10 @@ export class ConferencesComponent implements OnInit {
       this.managerConferences.push(data)
     );
 
-      this.conferenceForm.reset();
+    this.conferenceForm.reset();
 
-      this.managerConferences.splice(conferenceIndexToEdit, 1);
-      
+    this.managerConferences.splice(conferenceIndexToEdit, 1);
+
   }
 
 
@@ -169,5 +178,49 @@ export class ConferencesComponent implements OnInit {
 
   }
 
+  sort() {
+
+    if (this.sortOption == 'name') {
+
+      this.managerConferences.sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        else if (a.name > b.name) {
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      });
+    }
+    else if (this.sortOption == 'dateAsc') {
+      this.managerConferences.sort((a, b) => {
+        if (a.date < b.date) {
+          return -1;
+        }
+        else if (a.date > b.date) {
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      });
+    }
+    else if (this.sortOption == 'dateDesc') {
+      this.managerConferences.sort((a, b) => {
+        if (a.date < b.date) {
+          return -1;
+        }
+        else if (a.date > b.date) {
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      });
+      this.managerConferences.reverse();
+    }
+  }
 
 }
