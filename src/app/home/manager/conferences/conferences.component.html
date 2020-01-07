@@ -1,17 +1,16 @@
-
 <div class="container text-center">
 
-  <div class="row d-flex justify-content-center align-items-center" style="margin-top: 50px;">
-        <button type="button" class="btn-azulctw" (click)="openModal(template)">Create
-          conference</button>
-        <div class="sort-section">
-          <b class="text-white">Filter: </b>
-          <select class="select-Option" [(ngModel)]="sortOption" (change)="sort()">
-            <option value="name">Name</option>
-            <option value="dateAsc">Date - Asc</option>
-            <option value="dateDesc">Date - Desc</option>
-          </select>
-        </div>
+  <div class="row d-flex justify-content-center align-items-center" style="margin-top: 20px;">
+    <button type="button" class="btn-azulctw" (click)="openModal(template)">Create
+      conference</button>
+    <div class="sort-section">
+      <b class="text-white">Filter: </b>
+      <select class="select-Option" [(ngModel)]="sortOption" (change)="sort()">
+        <option value="name">Name</option>
+        <option value="dateAsc">Date - Asc</option>
+        <option value="dateDesc">Date - Desc</option>
+      </select>
+    </div>
   </div>
 
   <div class="text-warning" style="margin-top:100px"
@@ -19,184 +18,147 @@
     <h4><b>No conferences have been created so far!</b></h4>
   </div>
 
-<div class="container text-center">
+  <div class="container text-center">
 
 
-  <ng-template #template>
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Create conference</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="conferenceForm" name="criar" (ngSubmit)="onSubmit()" class="container mb-5">
+          <div class="form-group">
+            <label for="formGroupNameInput">Conference Name</label>
+            <input type="text" formControlName="name" class="form-control" placeholder="Enter conference name..."
+              required>
+            <small id="nameHelp" class="form-text text-muted">This will be the tittle of the conference</small>
+          </div>
+          <div class="form-group">
+            <label for="formGroupDescriptionInput">Conference Description</label>
+            <div class="input-group">
+              <textarea formControlName="description" class="form-control" aria-label="With textarea"
+                required></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="formGroupNameInput">Conference Location</label>
+            <input type="text" formControlName="location" class="form-control" placeholder="Enter conference location..."
+              required>
+          </div>
+          <div class="form-group w-50">
+            <label for="formGroupDateInput">Conference Date</label>
+            <input formControlName="date" placeholder="Conference Date" class="form-control" bsDatepicker
+              [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY'}" required>
+          </div>
+
+          <div class="form-group w-50">
+            <label for="formGroupTimeInput2">Conference Starting Time</label>
+            <input type="time" formControlName="time" placeholder="Timepicker" class="form-control" required>
+          </div>
+
+          <div class="text-center mt-5">
+            <p>Do you want to create this conference?</p>
+            <button type="submit" [disabled]="!conferenceForm.valid" class="btn btn-primary w-25"
+              [class.green]="conferenceForm.valid" (click)="modalRef.hide()">Create</button>
+            <button type="button" class="btn btn-light w-25" (click)="modalRef.hide()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+  </div>
+
+  <div *ngFor="let conference of managerConferences" class="container card mb-3" style="max-width: 900px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="http://jobit.pt/img/partners/techworks.jpg" class="card-img" alt="..." />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title"><span></span>{{ conference.name }}</h2>
+          <p class="card-text">Description: {{ conference.description }}</p>
+          <p class="card-text">Location: {{ conference.location }}</p>
+          <p class="card-text">Date: {{ conference.date }}</p>
+          <p class="card-text">Hour: {{ conference.time }}</p>
+        </div>
+        <!--  bg-transparent border-success text-center -->
+        <div class="card-footer">
+          <a routerLink="/home/manager/conference/{{ conference.id }}/questions" routerLinkActive="active"
+            class="btnQuestions">See Questions!
+          </a>
+          <button type="button" class="btnShare" (click)="openModal(templateShare, conference.id)">Share</button>
+          <button type="button" class="btnEdit" (click)="openModalEdit(templateEdit, conference.id)">
+            Edit
+          </button>
+          <button type="button" class="btnDelete" (click)="deleteConference(conference.id)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #templateShare>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Create conference</h4>
-      <button
-        type="button"
-        class="close pull-right"
-        aria-label="Close"
-        (click)="modalRef.hide()"
-      >
+      <h4 class="modal-title pull-left">Share this link with attendees</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" [(ngModel)]="conferenceIdShare">
+      http://localhost:4200/conference/{{ conferenceIdShare }}/questions
+    </div>
+    <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+  </ng-template>
+
+  <ng-template #templateEdit>
+    <div class="modal-header" [(ngModel)]="conferenceIndexToEdit">
+      <h4 class="modal-title pull-left">Edit conference</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="conferenceForm" name="criar" (ngSubmit)="onSubmit()" class="container mb-5">
-        <div class="form-group">
-          <label for="formGroupNameInput">Conference Name</label>
-          <input type="text" formControlName="name" class="form-control" placeholder="Enter conference name..."
-            required>
-          <small id="nameHelp" class="form-text text-muted">This will be the tittle of the conference</small>
-        </div>
-        <div class="form-group">
-          <label for="formGroupDescriptionInput">Conference Description</label>
-          <div class="input-group">
-            <textarea formControlName="description" class="form-control" aria-label="With textarea" required></textarea>
-          </div>
-        </div>
-        <div class="form-group w-50">
-          <label for="formGroupDateInput">Conference Date</label>
-          <input formControlName="date" placeholder="Conference Date" class="form-control" bsDatepicker
-            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY'}" required>
-        </div>
-
-        <div class="form-group w-50">
-          <label for="formGroupTimeInput2">Conference Starting Time</label>
-          <input type="time" formControlName="time" placeholder="Timepicker" class="form-control" required>
-        </div>
-
-        <div class="text-center mt-5">
-          <p>Do you want to create this conference?</p>
-          <button type="submit" [disabled]="!conferenceForm.valid" class="btn btn-primary w-25"
-            [class.green]="conferenceForm.valid" (click)="modalRef.hide()">Create</button>
-          <button type="button" class="btn btn-light w-25" (click)="modalRef.hide()">Cancel</button>
-        </div>
-      </form>
-    </div>
-  </ng-template>
-</div>
-
-<div
-  *ngFor="let conference of managerConferences"
-  class=" container card mb-3"
-  style="max-width: 900px;"
->
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img
-        src="http://jobit.pt/img/partners/techworks.jpg"
-        class="card-img"
-        alt="..."
-      />
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h2 class="card-title">{{ conference.name }}</h2>
-        <p class="card-text">{{ conference.description }}</p>
-        <p class="card-text">{{ conference.date }}</p>
-        <p class="card-text">{{ conference.time }}</p>
-        <a
-          routerLink="/home/manager/conference/{{ conference.id }}/questions"
-          routerLinkActive="active"
-          class="btnQuestions"
-          >See Questions!
-        </a>
-      </div>
-      <!--  bg-transparent border-success text-center -->
-      <div class="card-footer">
-        <button
-          type="button"
-          class="btnShare"
-          (click)="openModal(templateShare, conference.id)">Share</button>
-        <button
-          type="button"
-          class="btnEdit"
-          (click)="openModalEdit(templateEdit, conference.id)"
-        >
-          Edit
-        </button>
-        <button
-          type="button"
-          class="btnDelete"
-          (click)="deleteConference(conference.id)"
-        >
-          Delete
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<ng-template #templateShare>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Share this link with attendees</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body" [(ngModel)]="conferenceIdShare">http://localhost:4200/home/manager/conference/{{ conferenceIdShare }}/questions
-  </div>
-</ng-template>
-
-<ng-template #templateEdit>
-  <div class="modal-header" [(ngModel)]="conferenceIndexToEdit">
-    <h4 class="modal-title pull-left">Edit conference</h4>
-    <button
-      type="button"
-      class="close pull-right"
-      aria-label="Close"
-      (click)="modalRef.hide()"
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form
-      [formGroup]="conferenceForm"
-      name="editar"
-      (ngSubmit)="
+      <form [formGroup]="conferenceForm" name="editar" (ngSubmit)="
         onEditSubmit(
           conferenceIndexToEdit,
           managerConferences[conferenceIndexToEdit].id
         )
-      "
-      class="container"
-    >
-      <div class="form-group">
-        <label for="formGroupNameInput">Edit conference Name</label>
-        <input type="text" formControlName="name" class="form-control" />
-      </div>
-      <div class="form-group">
-        <label for="formGroupDescriptionInput">Conference Description</label>
-        <div class="input-group">
-          <textarea
-            formControlName="description"
-            class="form-control"
-            aria-label="With textarea"
-          ></textarea>
+      " class="container">
+        <div class="form-group">
+          <label for="formGroupNameInput">Edit conference Name</label>
+          <input type="text" formControlName="name" class="form-control" />
         </div>
-      </div>
-      <div class="form-group w-50">
-        <label for="formGroupDateInput">Conference Date</label>
-        <input formControlName="date" class="form-control" bsDatepicker />
-      </div>
+        <div class="form-group">
+          <label for="formGroupDescriptionInput">Conference Description</label>
+          <div class="input-group">
+            <textarea formControlName="description" class="form-control" aria-label="With textarea"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="formGroupNameInput">Edit conference Location</label>
+          <input type="text" formControlName="location" class="form-control" />
+        </div>
+        <div class="form-group w-50">
+          <label for="formGroupDateInput">Conference Date</label>
+          <input formControlName="date" class="form-control" bsDatepicker />
+        </div>
 
-      <div class="form-group w-50">
-        <label for="formGroupTimeInput2">Conference Starting Time</label>
-        <input type="time" formControlName="time" class="form-control" />
-      </div>
+        <div class="form-group w-50">
+          <label for="formGroupTimeInput2">Conference Starting Time</label>
+          <input type="time" formControlName="time" class="form-control" />
+        </div>
 
-      <div class="text-center">
-        <p>Do you want to create this conference?</p>
-        <button
-          type="submit"
-          class="btn btn-primary w-25"
-          (click)="modalRef.hide()"
-        >
-          Update
-        </button>
-        <button
-          type="button"
-          class="btn btn-light w-25"
-          (click)="modalRef.hide()"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  </div>
-</ng-template>
-
+        <div class="text-center">
+          <p>Do you want to create this conference?</p>
+          <button type="submit" class="btn btn-primary w-25" (click)="modalRef.hide()">
+            Update
+          </button>
+          <button type="button" class="btn btn-light w-25" (click)="modalRef.hide()">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
