@@ -20,6 +20,7 @@ export class ConferencesComponent implements OnInit {
   conferenceIndexToEdit: number;
   sortOption: string;
   conferenceIdShare: number;
+  public myAngularxQrCode: string = null;
 
 
   //criar uma variavel que é da class ConferenceService
@@ -84,6 +85,7 @@ export class ConferencesComponent implements OnInit {
     const conference = {
       name: this.conferenceForm.value.name,
       description: this.conferenceForm.value.description,
+      location: this.conferenceForm.value.location,
       managersList: [{ id: this.managerId }],
       year: d.getFullYear(),
       month: d.getMonth() + 1,
@@ -117,6 +119,7 @@ export class ConferencesComponent implements OnInit {
       id: conferenceId,
       name: this.conferenceForm.value.name,
       description: this.conferenceForm.value.description,
+      location: this.conferenceForm.value.location,
       managersList: [{ id: this.managerId }],
       year: d.getFullYear(),
       month: d.getMonth() + 1,
@@ -154,7 +157,8 @@ export class ConferencesComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.managerId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.myAngularxQrCode = 'https://www.criticaltechworks.com/';
+    
     console.log(localStorage.getItem('currentUser'));
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.managerId = currentUser.id;
@@ -170,6 +174,7 @@ export class ConferencesComponent implements OnInit {
     this.conferenceForm = this.conferenceBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
+      location: ['', Validators.required],
       date: ['', Validators.required],
       time: ['', Validators.required],
       Id: [this.managerId],
