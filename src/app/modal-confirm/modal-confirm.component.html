@@ -1,0 +1,13 @@
+<div class="modalConfirm">
+  <div mat-dialog-content class="confirm">
+    <mat-toolbar class="alert">
+      <span>Alert!</span>
+    </mat-toolbar>
+    <p>{{data.message}}</p>
+  </div>
+  <div mat-dialog-actions style="display:block;" class="text-center">
+    <button mat-raised-button (click)="onNoClick()"class="cancel">Cancel</button>
+    <button mat-raised-button [mat-dialog-close]="'delete'" class="yes">Yes</button>
+  </div>
+</div>
+
