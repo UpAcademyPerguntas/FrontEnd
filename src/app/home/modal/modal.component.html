@@ -14,7 +14,7 @@
         <p *ngIf="error4">The Username field can't be left blank.</p>
       </div>
       <mat-form-field>
-        <input matInput placeholder="Password" [(ngModel)]="user.password" required>
+        <input matInput placeholder="Password" [(ngModel)]="user.password" (keyup)="validatePassword()" required>
       </mat-form-field>
       <mat-form-field>
       <input matInput placeholder="Confirm Password" [(ngModel)]="user.confirmPassword" (keyup)="validatePassword()" required>
