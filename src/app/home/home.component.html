@@ -1,17 +1,12 @@
 <nav class="navbar">
    <a class="user"  translate> Welcome {{ managerName }}</a>
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item" *ngIf="role == 'manager'">
-      <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/" translate>Home</a>
-    </li>
   </ul>
   <span class="navbar-text mx-3">
   </span>
   <img class="img-responsive" src="assets/Images/AskJIM.png">
+  <button class="logout" *ngIf="role == 'manager'" style="margin-right: 103px;" [routerLinkActive]="['active']" routerLink="/home/manager/conferences" translate>Conferences</button>
   <button class=" logout" (click)="logout()" translate>Logout</button>
 </nav>
-
-
-
 
 <router-outlet></router-outlet>

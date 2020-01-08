@@ -48,7 +48,7 @@ export class ConferencesComponent implements OnInit {
       location: ['', Validators.required],
       date: ['', Validators.required],
       time: ['', Validators.required],
-      videoUrl: ['https://www.youtube.com/watch?v=wCfTVQBeiPE', Validators.required],
+      videoUrl: ['https://www.youtube.com/watch?v=wCfTVQBeiPE', Validators.required],// /embed/wCfTVQBeiPE
       Id: [this.managerId],
     });
 

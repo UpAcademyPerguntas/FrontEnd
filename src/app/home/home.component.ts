@@ -27,7 +27,7 @@ logout() {
 }
 
   ngOnInit() {
-    this.role = localStorage.getItem("currentUserRole");
+    this.role =  JSON.parse(localStorage.getItem("currentUserRole"));
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     this.managerName = currentUser.userName;
   }
