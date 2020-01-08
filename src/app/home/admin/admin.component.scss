@@ -17,15 +17,15 @@ table{
   margin-top: 30px;
   margin-bottom: 20px;
   text-align: center;
-  background-color: rgb(28, 26, 85);
+  background-color: transparent;
   padding: 10px 10px;
   border-radius: 10px 10px;
-  border:1px solid white;
+  border:2px solid  rgb(28, 26, 85);
   color: white;
 }
 
 .createManButton:hover{
-  background-color:rgb(25, 196, 194)
+  background-color: rgb(28, 26, 85);
 }
 
 .size {
@@ -39,10 +39,7 @@ table{
 
 }
 
-.background{
-  background-color: rgb(28, 26, 85);
-  height: 100vh;
-}
+
 
 input{
   color: white;

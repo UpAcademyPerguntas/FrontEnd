@@ -61,8 +61,8 @@
 
         <div class="text-center mt-5">
           <p>Do you want to create this conference?</p>
-          <button type="submit" [disabled]="!conferenceForm.valid" class="btn btn-primary w-25"
-            [class.green]="conferenceForm.valid" (click)="modalRef.hide()">Create</button>
+          <button type="submit" [disabled]="!conferenceForm.valid" class="btnCreate"
+            [class.btnCreateOK]="conferenceForm.valid" (click)="modalRef.hide()">Create</button>
           <button type="button" class="btn btn-light w-25" (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>

@@ -1,7 +1,5 @@
 <nav class="navbar">
-  <!-- navbar navbar-expand-lg navbar-light bg-primary font-weight-bold -->
-  <!--routerLink=""  -->
-  <a class="user"  translate> Welcome {{ managerName }}</a>
+   <a class="user"  translate> Welcome {{ managerName }}</a>
   <ul class="navbar-nav mr-auto">
     <li class="nav-item" *ngIf="role == 'manager'">
       <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/" translate>Home</a>
@@ -9,7 +7,7 @@
   </ul>
   <span class="navbar-text mx-3">
   </span>
-  <!-- btn btn-outline-light -->
+  <img class="img-responsive" src="assets/Images/AskJIM.png">
   <button class=" logout" (click)="logout()" translate>Logout</button>
 </nav>
 

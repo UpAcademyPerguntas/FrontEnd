@@ -6,17 +6,68 @@
   background-repeat: no-repeat;
   background-color: rgba(28, 26, 85);
   color: white;
+  height: 85px;
+
 }
-// .background {
-//   background-color: rgb(28, 26, 85);
-//   text-align: center;
-//   height: 100 vh;
-// }
+
+.img-responsive {
+  width: 100px;
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  padding: 4px;
+}
+.container {
+  max-width: 1400px;
+}
+.video{
+  margin: auto;
+  box-shadow: 20px 20px 20px 10px rgba(0, 0, 0, 0.308);
+
+}
+
+.conferenceInfo {
+  margin-top: 20px;
+  border: 2px solid;
+  border-color: rgb(28, 26, 85);
+
+  color: white;
+  margin-bottom: 5px;
+  box-shadow: 20px 20px 20px 10px rgba(0, 0, 0, 0.308);
+  margin-bottom: 70px;
+  width: 80%;
+  margin: auto;
+  margin-top: 60px;
+}
+.ConfInfo {
+  padding: 10px;
+  font-size: 25px;
+  border-bottom: 2px solid rgb(25, 196, 194);
+  text-align: center;
+}
+
+
+.ConfName {
+  font-size: 18px;
+  margin-left: 20px;
+}
+.ConfDescription {
+  font-size: 18px;
+  margin-left: 20px;
+
+}
+
+.ConfName {
+  font-size: 18px;
+  margin-left: 20px;
+
+}
+
 
 input {
-  margin: 15px 15px 25px 15px;
+  margin: 10px 10px;
   padding: 5px;
-  width: 75%;
+  width: 85%;
   border-style: solid;
   border-width: 3px;
   border-color: rgb(25, 196, 194);
@@ -30,29 +81,16 @@ input::placeholder {
   color: black;
 }
 
-.boxQuestions {
-  margin: auto;
-  padding: 15px;
-  margin-top: 15px;
-  height: 240px;
-  width: 70%;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 20px 20px 20px 10px rgba(0, 0, 0, 0.308);
-}
-
-.boxContent {
-  color: rgb(28, 26, 85);
-}
 .submitButton {
   border: none;
-  padding: 10px 20px;
-  border-radius: 10px 10px;
+  padding: 10px 10px;
+  margin: 8px 1px;
+
   text-align: center;
-  // border: 2px solid rgb(28, 26, 85);
+
   color: white;
   background-color: rgb(25, 196, 194);
 
-  font-weight: bold;
 }
 
 .submitButton:hover {
@@ -60,44 +98,34 @@ input::placeholder {
   color: white;
 }
 
-.questions-Title {
-  margin: 35px;
+.sort-section {
+  text-align: right;
+
+  margin: 20px 0px;
   color: white;
-  text-align: center;
 }
 
-.submitQuestion {
-  margin: 25px;
-  text-align: center;
-  border: 5px black;
+.select-Option {
+
+  color: black;
+  text-align: r;
 }
-// .submitButton{
-//   width:20%;
-//   background-color:rgb(3, 3, 143);
-//   color:white;
-//   border-radius: 15px;
 
-//   border-style: solid;
-//   border-width: 3px;
-//   border-color:black;
-// }
-
-// .submitButton:hover,
-// .submitButton:focus {
-//   color:black;
-//   background-color: #3e8e41;
-//   font-weight: bold;
-//   transform: translateY(-0.35em);
-// }
-
-// .submitButton:active {
-//   background-color: #3e8e41;
-//   box-shadow: 0 6px #666;
-
-//   transform: translateY(4px);
-// }
-
-//vote Button
+#card {
+  background-color: white;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 15px;
+  border: none;
+  box-shadow: 20px 20px 20px 10px rgba(0, 0, 0, 0.308);
+  margin: 10px;
+}
+.card-body {
+  color: rgb(25, 196, 194);
+}
+.card-text {
+  color: black;
+}
 .fa {
   font-size: 35px;
   cursor: pointer;
@@ -108,149 +136,16 @@ input::placeholder {
 .fa:hover {
   color: rgb(25, 196, 194);
 }
-
-.card-body {
-  color: rgb(25, 196, 194);
-
-}
-
-.card-text {
-  color: black;
-}
-
 .disabled-vote-button {
   opacity: 0.5;
   pointer-events: none;
-}
-#card {
-  text-align: left;
-  width: 70%;
-  margin-bottom: 20px;
-  // border-radius: 20px 20px;
-  border: none;
-  box-shadow: 20px 20px 20px 10px rgba(0, 0, 0, 0.308);
-}
-
-.sort-section {
-  text-align: right;
-  margin-right: 100px;
-  margin-bottom: 25px;
-  color: white;
 }
 
 .questionsListSection {
   display: none;
 }
 
-.select-Option {
-  background-color: rgb(25, 196, 194);
-  color: white;
-  text-align: center;
+.scrollQuestions{
+  overflow-y:auto;
+  height: 500px;
 }
-
-//nao sei o que é
-// .page-Title{
-//   padding-top: 15px;
-//   margin:15px;
-//   text-align: center;
-//   color:rgb(0,0,102);
-//  // text-shadow: 3px 2px blue;
-// }
-
-// .page-Header-question{
-//   padding:0px;
-//   margin:30px 0px;
-// }
-
-// .page-Header-ctw{
-//   padding:15px;
-//   margin: 30px 0px;
-//   text-align: center;
-
-//   background-color:rgb(1, 1, 63);
-// }
-
-// .question-Logo{
-//   height: 100%;
-//   width: 80%;
-//   display: block;
-//   margin-left: auto;
-//   margin-right: auto;
-// }
-
-// .question-Logo:hover {
-//   -webkit-transform: scaleX(-1);
-//   transform: scaleX(-1);
-// }
-
-// .ctw-Logo{
-//   height:100%;
-// }
-
-// .separator{
-//   margin:5px 100px;
-//   padding:6px;
-//   background-color:rgb(28, 26, 85);
-// }
-
-// .separator2{
-//   margin:5px 100px;
-//   padding:3px;
-//   background-color:#3e8e41;
-// }
-
-// .submitQuestion{
-//   margin:35px;
-//   text-align: center;
-//   border:5px black;
-// }
-
-// input{
-//   margin:15px 15px 35px 15px;
-//   padding:5px;
-//   width: 75%;
-//   border-style: solid;
-//   border-width: 5px;
-//   border-color:#3e8e41;
-// }
-
-// input:hover{
-//   border-color:rgb(3, 3, 143);
-//   font-weight: bold;
-// }
-
-// input::placeholder{
-//   color:black;
-// }
-
-// .submitButton{
-//   width:20%;
-//   background-color:rgb(3, 3, 143);
-//   color:white;
-//   border-radius: 15px;
-
-//   border-style: solid;
-//   border-width: 3px;
-//   border-color:black;
-// }
-
-// .submitButton:hover,
-// .submitButton:focus {
-//   color:black;
-//   background-color: #3e8e41;
-//   font-weight: bold;
-//   transform: translateY(-0.35em);
-// }
-
-// .submitButton:active {
-//   background-color: #3e8e41;
-//   box-shadow: 0 6px #666;
-
-//   transform: translateY(4px);
-// }
-
-// .questions-Title{
-//   margin:25px;
-//    text-shadow: 2px 1px blue;
-//   text-align:center;
-// }
