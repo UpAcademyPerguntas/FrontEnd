@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html,
 body {
@@ -27,6 +27,7 @@ body {
   background: none;
   box-shadow: none;
 }
+
 .mat-toolbar {
   background-color: rgb(28, 26, 85) !important;
   color: white;

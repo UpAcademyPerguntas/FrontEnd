@@ -1,0 +1,59 @@
+.modalConfirm {
+  background: #ffff;
+  height: 170px;
+}
+
+.mat-toolbar-single-row {
+  padding: 20px 16px !important;
+  border-radius: 0px 0px !important;
+}
+
+p{
+  text-align: justify;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.cancel{
+  color: #19c4c2;
+    margin: 5px;
+    border-color: #19c4c2;
+    border: solid 2px;
+    border-radius: 10px 10px;
+    background-color: white;
+    padding: 5px 10px;
+    width: 80px;
+    margin-left: 50px;
+}
+
+.cancel:hover{
+background-color:rgb(25, 196, 194);
+color: white;
+text-align: center;
+}
+
+.yes{
+  color: #dc3545;
+    margin: 5px;
+    border-color: #dc3545;
+    border: solid 2px;
+    border-radius: 10px 10px;
+    background-color: white;
+    padding: 5px 10px;
+    width: 80px;
+}
+
+.yes:hover{
+  background-color: #dc3545 !important;
+  color: white;
+
+}
+
+.alert{
+  background-color: rgb(28, 26, 85);
+  color: white;
+  height: 30px;
+}
+
+

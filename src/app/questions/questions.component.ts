@@ -49,7 +49,8 @@ export class QuestionsComponent implements OnInit {
     this.questionService.getConference(this.conferenceId).subscribe((conference:any)=>{
       this.conferenceName=conference.name;
       this.conferenceAll=conference;
-      this.videoUrl =  this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/c9F5kMUfFKk");
+      let array = conference.videoUrl.split("=");
+      this.videoUrl =  this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+array[1]);
     }, error=>{console.log(error)});
 
     if (localStorage.getItem('machineId')==null ||localStorage.getItem('machineId')==undefined){

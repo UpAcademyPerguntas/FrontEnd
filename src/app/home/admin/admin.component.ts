@@ -4,6 +4,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdminService } from 'src/app/core/services/admin.service';
 import {MatPaginator} from '@angular/material/paginator';
+import { ModalConfirmComponent } from 'src/app/modal-confirm/modal-confirm.component';
 
 
 export interface PeriodicElement {
@@ -46,6 +47,22 @@ export class AdminComponent implements OnInit {
       })
     })
   }
+
+  openDialog(index): void {
+    const dialogRef = this.matDialog.open(ModalConfirmComponent, {
+      width: '300px',
+      data: {message: 'Delete manager?'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result == 'delete') {
+        this.deleteData(index)
+      }
+    });
+  }
+
 
   login() {
     console.log(this.currentUser);
