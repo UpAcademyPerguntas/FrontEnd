@@ -49,25 +49,21 @@ export class ConferencesComponent implements OnInit {
   openModalEdit(template: TemplateRef<any>, conferenceId: number) {
     this.modalRef = this.modalService.show(template);
 
-    console.log(conferenceId);
-    console.log(this.managerConferences);
+   
 
     for (let i = 0; i < this.managerConferences.length; i++) {
       if (this.managerConferences[i].id == conferenceId) {
 
-        console.log(this.managerConferences[i]);
-
         this.conferenceIndexToEdit = i;
 
         const objToEdit = JSON.parse(JSON.stringify(this.managerConferences[this.conferenceIndexToEdit]));
-        console.log(objToEdit);
+  
         let arrDate = objToEdit.date.split('-');
 
         objToEdit.date = new Date(parseInt(arrDate[0]), parseInt(arrDate[1]) - 1, parseInt(arrDate[2]));
 
         this.conferenceForm.patchValue(objToEdit); //
 
-        console.log(this.conferenceIndexToEdit);
       }
     }
   }
@@ -86,6 +82,7 @@ export class ConferencesComponent implements OnInit {
       name: this.conferenceForm.value.name,
       description: this.conferenceForm.value.description,
       location: this.conferenceForm.value.location,
+      videoUrl: this.conferenceForm.value.videoUrl,
       managersList: [{ id: this.managerId }],
       year: d.getFullYear(),
       month: d.getMonth() + 1,
@@ -120,6 +117,7 @@ export class ConferencesComponent implements OnInit {
       name: this.conferenceForm.value.name,
       description: this.conferenceForm.value.description,
       location: this.conferenceForm.value.location,
+      videoUrl: this.conferenceForm.value.videoUrl,
       managersList: [{ id: this.managerId }],
       year: d.getFullYear(),
       month: d.getMonth() + 1,
@@ -130,9 +128,9 @@ export class ConferencesComponent implements OnInit {
 
     console.log(conference);
 
-    this.conferenceService.updateConferenceById(conference, conferenceId).subscribe(data => // antes estavamos a fazer push do conferenceForm
+    this.conferenceService.updateConferenceById(conference, conferenceId, conferenceIndexToEdit).subscribe(data => // antes estavamos a fazer push do conferenceForm
       this.managerConferences.push(data)
-    );
+      );
 
     this.conferenceForm.reset();
 
@@ -164,10 +162,8 @@ export class ConferencesComponent implements OnInit {
     this.managerId = currentUser.id;
 
     this.conferenceService.getAllConferencesByUserId(this.managerId).subscribe((data: any[]) => { //any[] está à espera de receber um array
-      console.log(data);
+    
       this.managerConferences = data;
-
-      console.log(this.managerConferences);
 
     });
 
@@ -177,6 +173,7 @@ export class ConferencesComponent implements OnInit {
       location: ['', Validators.required],
       date: ['', Validators.required],
       time: ['', Validators.required],
+      videoUrl: ['https://www.youtube.com/watch?v=wCfTVQBeiPE', Validators.required],
       Id: [this.managerId],
     });
 
