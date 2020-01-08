@@ -1,4 +1,6 @@
-<nav class="header"></nav>
+<nav class="header">
+   <img class="img-responsive1" src="assets/Images/AskJIM.png">
+</nav>
 <body class="body">
   <!-- perguntar coisa de baixo -->
     <div class="box">
@@ -11,7 +13,7 @@
           formControlName="userName"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && formFields.userName.errors }"
-          placeholder="Enter email"
+          placeholder="Enter Username"
         />
             <!-- <div *ngIf="submitted && formFields.userName.errors" class="invalid-feedback">
           <div *ngIf="formFields.userName.errors.required">Username is required</div>

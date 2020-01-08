@@ -5,6 +5,7 @@ import { AuthService } from '../core/services';
 import { FormGroup, FormControl } from '@angular/forms';
 import { QuestionService } from '../core/services/question.service';
 import { timeInterval } from 'rxjs/operators';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-questions',
@@ -12,12 +13,13 @@ import { timeInterval } from 'rxjs/operators';
   styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit {
-  
+
   public cards = [
   ]
 
   conferenceId:string;
   conferenceName;
+  conferenceAll;
 
   lastQuestionTime:number=0;
   lastAnsweredQuestionTime:number=0;
@@ -25,6 +27,7 @@ export class QuestionsComponent implements OnInit {
   machineId:string;
   submitQuestionDisabled=false;
   sortOption:string;
+  videoUrl;
 
   question= {
     questionContent:'',
@@ -33,7 +36,7 @@ export class QuestionsComponent implements OnInit {
     answeredAt:0
   };
 
-  constructor(private questionService:QuestionService, private activeRoute:ActivatedRoute){
+  constructor(private questionService:QuestionService, private activeRoute:ActivatedRoute, private sanitizer: DomSanitizer){
 
     this.activeRoute.paramMap.subscribe(params=>{
       this.conferenceId=params.get('id');
@@ -42,13 +45,15 @@ export class QuestionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.questionService.getConference(this.conferenceId).subscribe((conference:any)=>{
       this.conferenceName=conference.name;
+      this.conferenceAll=conference;
+      this.videoUrl =  this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/c9F5kMUfFKk");
     }, error=>{console.log(error)});
 
     if (localStorage.getItem('machineId')==null ||localStorage.getItem('machineId')==undefined){
-        
+
         this.machineId=Date.now().toString();
         localStorage.setItem('machineId',this.machineId);
     }
@@ -63,7 +68,7 @@ export class QuestionsComponent implements OnInit {
   }
 
   submitQuestion(){
-    
+
     this.submitQuestionDisabled=true;
 
     this.questionService.addQuestion(this.question).subscribe((dataQuestion:any) => {
@@ -81,15 +86,15 @@ export class QuestionsComponent implements OnInit {
     },error=>{
       console.log(error);
       this.question.questionContent='';
-      this.submitQuestionDisabled=false;}); 
+      this.submitQuestionDisabled=false;});
   }
 
   changeVote(index){
-   
+
     this.cards[index].submitVoteDisabled=true;
-   
+
     if(this.cards[index].votedQuestion==false){
-    
+
     let vote={
       question:{id:this.cards[index].id},
       machineId:this.machineId
@@ -102,26 +107,26 @@ export class QuestionsComponent implements OnInit {
       this.cards[index].submitVoteDisabled=false;
       this.sort();
     }, error=>{console.log(error);
-  
+
       this.cards[index].submitVoteDisabled=false;
     });
    }
    else{
-     
+
      this.questionService.deleteVote(this.cards[index].voteId)
       .subscribe(result=>{console.log(result);
-        
+
         this.cards[index].votedQuestion=false;
         this.cards[index].numberOfVotes--;
         this.cards[index].voteId=0;
         this.cards[index].submitVoteDisabled=false;
         this.sort();
-        
+
       }, error=>{console.log(error);
-  
+
         this.cards[index].submitVoteDisabled=false;
       });
-   }  
+   }
   }
 
   checkIfIncludes(index){
@@ -133,7 +138,7 @@ export class QuestionsComponent implements OnInit {
   }
 
   hideQuestionsSection(){
-    
+
     if(this.cards.length==0){
       return true;
     }
@@ -150,11 +155,11 @@ export class QuestionsComponent implements OnInit {
           this.lastQuestionTime=questions[questions.length-1].createdAt;
 
           let tempArray:any[]=[];
-          
+
           questions.forEach(question=>{
 
             let result=this.cards.find(card=>{return question.id==card.id;})
-            
+
             if(result==undefined && question.answered==false){
               question.votedQuestion=false,
               question.voteId=0,
@@ -175,11 +180,11 @@ export class QuestionsComponent implements OnInit {
 
             if(votes!=null){
               if(votes.length>0){
-                
+
                 question.numberOfVotes=votes.length;
-                let found=false;            
+                let found=false;
                 for(let i=0;i<votes.length;i++){
-                    
+
                   if(votes[i].machineId==this.machineId){
                     found=true;
                     question.votedQuestion=true;
@@ -196,7 +201,7 @@ export class QuestionsComponent implements OnInit {
                 question.numberOfVotes=0;
                 question.votedQuestion=false;
                 question.voteId=0;
-  
+
               }
             }
             else{
@@ -205,7 +210,7 @@ export class QuestionsComponent implements OnInit {
               question.voteId=0;
             }
             if(index=this.cards.length-1){this.sort();}
-            
+
           },error=>{console.log(error);});
       });
 
@@ -213,9 +218,9 @@ export class QuestionsComponent implements OnInit {
   }
 
   sort(){
-    
+
     if(this.sortOption=='timeAsc'){
-      
+
       this.cards.sort((a,b)=>{
         if (a.id<b.id){
           return -1;
@@ -278,14 +283,14 @@ export class QuestionsComponent implements OnInit {
 
         if(questions!=null){
           if(questions.length>0){
-        
+
             this.lastAnsweredQuestionTime=questions[questions.length-1].answeredAt;
             let index;
 
             questions.forEach(question=>{
               index=this.cards.findIndex(card=>{return card.id==question.id;});
-              
-              if(index!=-1){this.cards.splice(index,1);} 
+
+              if(index!=-1){this.cards.splice(index,1);}
             });
           }
         }
