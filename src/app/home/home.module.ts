@@ -14,12 +14,14 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     AdminComponent,
-    ModalComponent
+    ModalComponent,
+    ModalConfirmComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,6 @@ import {MatIconModule} from '@angular/material/icon';
     MatToolbarModule,
     MatIconModule
   ],
-  entryComponents: [ ModalComponent]
+  entryComponents: [ ModalComponent, ModalConfirmComponent]
 })
 export class HomeModule { }

@@ -8,6 +8,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { ManagerRoutingModule } from './manager-routing.module';
 import { ManagerQuestionsComponent } from './manager-questions/manager-questions.component';
+import { QRCodeModule } from 'angularx-qrcode';
+
 
 
 
@@ -23,7 +25,8 @@ import { ManagerQuestionsComponent } from './manager-questions/manager-questions
     ReactiveFormsModule,
     ManagerRoutingModule,
     BsDatepickerModule.forRoot(),
-    TimepickerModule.forRoot()
+    TimepickerModule.forRoot(),
+    QRCodeModule,
   ],
   exports: [
     ManagerComponent,

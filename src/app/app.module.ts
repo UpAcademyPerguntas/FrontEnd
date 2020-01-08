@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatPaginatorModule} from '@angular/material/paginator';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -13,7 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -27,6 +26,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     QuestionsComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -38,7 +38,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     ModalModule.forRoot(),
-
+    MatDialogModule
 
 
   ],
