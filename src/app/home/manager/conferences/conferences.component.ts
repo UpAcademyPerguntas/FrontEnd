@@ -41,6 +41,17 @@ export class ConferencesComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>, conferenceId: number) {
+
+    this.conferenceForm = this.conferenceBuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      location: ['', Validators.required],
+      date: ['', Validators.required],
+      time: ['', Validators.required],
+      videoUrl: ['https://www.youtube.com/watch?v=wCfTVQBeiPE', Validators.required],
+      Id: [this.managerId],
+    });
+
     this.modalRef = this.modalService.show(template);
 
     this.conferenceIdShare = conferenceId;
@@ -71,6 +82,7 @@ export class ConferencesComponent implements OnInit {
   
 
   onSubmit() {
+    
     console.log(this.conferenceForm);
     //this.managerConferences.push(this.conferenceForm.value);   
     console.log(this.conferenceForm.value.date);
