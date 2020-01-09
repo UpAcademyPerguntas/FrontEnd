@@ -15,7 +15,7 @@
 
   <div class="text-warning" style="margin-top:100px"
     [ngClass]="{'noConferenceWarningSection': showWarningNoConference()==false}">
-    <h4><b>No conferences have been created so far!</b></h4>
+    <h4><b class="warning">No conferences have been created so far!</b></h4>
   </div>
 
   <div class="container text-center">
@@ -67,9 +67,9 @@
 
           <div class="text-center mt-5">
             <p>Do you want to create this conference?</p>
-            <button type="submit" [disabled]="!conferenceForm.valid" class="btn btn-primary w-25"
+            <button type="submit" [disabled]="!conferenceForm.valid" class="btnCreate"
               [class.green]="conferenceForm.valid" (click)="modalRef.hide()">Create</button>
-            <button type="button" class="btn btn-light w-25" (click)="modalRef.hide()">Cancel</button>
+            <button type="button" class="btnCancel" (click)="modalRef.hide()">Cancel</button>
           </div>
         </form>
       </div>
