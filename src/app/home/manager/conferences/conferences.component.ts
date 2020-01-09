@@ -167,7 +167,7 @@ export class ConferencesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myAngularxQrCode = 'https://www.criticaltechworks.com/';
+    this.myAngularxQrCode = 'http://192.168.150.213:4200/conference/1/questions';
     
     console.log(localStorage.getItem('currentUser'));
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
