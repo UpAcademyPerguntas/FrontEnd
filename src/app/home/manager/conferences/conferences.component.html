@@ -97,8 +97,7 @@
           </a>
           <button type="button" class="btnShare" (click)="openModal(templateShare, conference.id)">Share</button>
           <button type="button" class="btnEdit" (click)="openModalEdit(templateEdit, conference.id)">
-            Edit {{ conference.id }}
-          </button>
+            Edit</button>
           <button type="button" class="btnDelete" (click)="deleteConference(conference.id)">
             Delete
           </button>
@@ -114,7 +113,7 @@
       </button>
     </div>
     <div class="modal-body" [(ngModel)]="conferenceIdShare">
-      http://localhost:4200/conference/{{ conferenceIdShare }}/questions
+      <a href="http://localhost:4200/conference/{{ conferenceIdShare }}/questions" target="_blank">http://localhost:4200/conference/{{ conferenceIdShare }}/questions</a>
     </div>
     <qrcode class="d-flex justify-content-center" [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
   </ng-template>
