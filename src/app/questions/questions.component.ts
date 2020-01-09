@@ -19,7 +19,7 @@ export class QuestionsComponent implements OnInit {
 
   conferenceId:string;
   conferenceName;
-  conferenceAll;
+  conferenceAll = {};
 
   lastQuestionTime:number=0;
   lastAnsweredQuestionTime:number=0;
@@ -49,6 +49,8 @@ export class QuestionsComponent implements OnInit {
     this.questionService.getConference(this.conferenceId).subscribe((conference:any)=>{
       this.conferenceName=conference.name;
       this.conferenceAll=conference;
+      console.log(conference);
+
       let array = conference.videoUrl.split("=");
       this.videoUrl =  this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+array[1]);
     }, error=>{console.log(error)});
