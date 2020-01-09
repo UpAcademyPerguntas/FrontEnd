@@ -60,7 +60,7 @@ export class ConferencesComponent implements OnInit {
   openModalEdit(template: TemplateRef<any>, conferenceId: number) {
     this.modalRef = this.modalService.show(template);
 
-
+   
 
     for (let i = 0; i < this.managerConferences.length; i++) {
       if (this.managerConferences[i].id == conferenceId) {
@@ -68,7 +68,7 @@ export class ConferencesComponent implements OnInit {
         this.conferenceIndexToEdit = i;
 
         const objToEdit = JSON.parse(JSON.stringify(this.managerConferences[this.conferenceIndexToEdit]));
-
+  
         let arrDate = objToEdit.date.split('-');
 
         objToEdit.date = new Date(parseInt(arrDate[0]), parseInt(arrDate[1]) - 1, parseInt(arrDate[2]));
@@ -79,12 +79,12 @@ export class ConferencesComponent implements OnInit {
     }
   }
 
-
+  
 
   onSubmit() {
-
+    
     console.log(this.conferenceForm);
-    //this.managerConferences.push(this.conferenceForm.value);
+    //this.managerConferences.push(this.conferenceForm.value);   
     console.log(this.conferenceForm.value.date);
 
     let d: Date = this.conferenceForm.value.date;
@@ -167,14 +167,14 @@ export class ConferencesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myAngularxQrCode = 'https://www.criticaltechworks.com/';
-
+    this.myAngularxQrCode = 'http://192.168.150.213:4200/conference/1/questions';
+    
     console.log(localStorage.getItem('currentUser'));
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.managerId = currentUser.id;
 
     this.conferenceService.getAllConferencesByUserId(this.managerId).subscribe((data: any[]) => { //any[] está à espera de receber um array
-
+    
       this.managerConferences = data;
 
     });
