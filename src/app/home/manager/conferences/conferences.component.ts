@@ -53,7 +53,7 @@ export class ConferencesComponent implements OnInit {
     });
 
     this.modalRef = this.modalService.show(template);
-
+    this.myAngularxQrCode = `http://192.168.150.213:4200/conference/${conferenceId}/questions`;
     this.conferenceIdShare = conferenceId;
   }
 
@@ -167,7 +167,7 @@ export class ConferencesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myAngularxQrCode = 'http://192.168.150.213:4200/conference/1/questions';
+   
     
     console.log(localStorage.getItem('currentUser'));
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));

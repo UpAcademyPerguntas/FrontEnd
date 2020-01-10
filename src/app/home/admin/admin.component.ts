@@ -83,10 +83,12 @@ export class AdminComponent implements OnInit {
             let user={
               userName:data.userName,
               password:data.password,
-              role:"manager"
+              role:"manager",
+              id: 0
             };
-            this.adminService.addManager(user).subscribe( response => {
-            this.addDataToTable(user);
+            this.adminService.addManager(user).subscribe( (response:any) => {
+              user.id = response.id;
+              this.addDataToTable(user);
           },err => {
             console.log('deu erro');
 
