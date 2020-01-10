@@ -156,3 +156,33 @@ color: white;
 .card{
   box-shadow: 20px 20px 20px 10px rgba(0, 0, 0, 0.308);
 }
+
+.btnUpdate {
+  border-color: rgb(25, 196, 194);
+  color: rgb(25, 196, 194);
+  border-radius: 10px 10px;
+  border: solid 2px;
+  background-color: transparent;
+  margin-right: 10px;
+  padding: 7px;
+  width: 100px;
+}
+
+.btnUpdate:hover {
+  background-color: rgb(25, 196, 194);
+  color: white;
+}
+.btnCancelEdit{
+  border-color: #dc3545;
+  color: #dc3545;
+  border-radius: 10px 10px;
+  border: solid 2px;
+  padding: 10px 30px;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.btnCancelEdit:hover{
+  background-color: #dc3545;
+  color: white;
+}
