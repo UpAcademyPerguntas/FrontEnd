@@ -99,7 +99,7 @@ input::placeholder {
 .sort-section {
   text-align: right;
 
-  margin: 20px 9.4px;
+  margin: 20px 0px;
   color: white;
 }
 
@@ -128,7 +128,10 @@ input::placeholder {
   font-size: 35px;
   cursor: pointer;
   user-select: none;
-  color: rgb(28, 26, 85);
+  color: #a8abad;
+}
+.selectedVote{
+  color: rgb(25, 196, 194);
 }
 
 .fa:hover {

@@ -84,10 +84,9 @@
               <!-- Use an element to toggle between a like/dislike icon -->
               <i
                 (click)="changeVote(i)"
-                class="fa float-right"
+                class="fa float-right fa-thumbs-up"
                 [ngClass]="{
-                  'fa-thumbs-up': checkIfIncludes(i) == false,
-                  'fa-thumbs-down': checkIfIncludes(i),
+                  'selectedVote': checkIfIncludes(i),
                   'disabled-vote-button': checkSubmitVoteDisabled(i)
                 }"
               ></i>
