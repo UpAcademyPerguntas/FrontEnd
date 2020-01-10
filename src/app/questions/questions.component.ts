@@ -73,24 +73,26 @@ export class QuestionsComponent implements OnInit {
 
   submitQuestion(){
 
-    this.submitQuestionDisabled=true;
+    if(this.question.questionContent!='' && this.question.questionContent.replace(/\s/g,'').length){
+      
+      this.submitQuestionDisabled=true;
+      this.questionService.addQuestion(this.question).subscribe((dataQuestion:any) => {
 
-    this.questionService.addQuestion(this.question).subscribe((dataQuestion:any) => {
+          dataQuestion.lastVoteTime=0,
+          dataQuestion.votedQuestion=false,
+          dataQuestion.voteId=0,
+          dataQuestion.numberOfVotes=0;
+          dataQuestion.submitVoteDisabled=false;
 
-        dataQuestion.lastVoteTime=0,
-        dataQuestion.votedQuestion=false,
-        dataQuestion.voteId=0,
-        dataQuestion.numberOfVotes=0;
-        dataQuestion.submitVoteDisabled=false;
-
-        this.cards.push(dataQuestion);
+          this.cards.push(dataQuestion);
+          this.question.questionContent='';
+          this.submitQuestionDisabled=false;
+          this.sort();
+      },error=>{
+        console.log(error);
         this.question.questionContent='';
-        this.submitQuestionDisabled=false;
-        this.sort();
-    },error=>{
-      console.log(error);
-      this.question.questionContent='';
-      this.submitQuestionDisabled=false;});
+        this.submitQuestionDisabled=false;});
+      }
   }
 
   changeVote(index){
