@@ -19,13 +19,14 @@ p{
   color: #19c4c2;
     margin: 5px;
     border-color: #19c4c2;
-    border: solid 2px;
+    border: solid 1px;
     border-radius: 10px 10px;
-    background-color: white;
+    background-color: transparent;
     padding: 5px 10px;
     width: 80px;
     margin-left: 50px;
 }
+
 
 .cancel:hover{
 background-color:rgb(25, 196, 194);
@@ -37,9 +38,9 @@ text-align: center;
   color: #dc3545;
     margin: 5px;
     border-color: #dc3545;
-    border: solid 2px;
+    border: solid 1px;
     border-radius: 10px 10px;
-    background-color: white;
+    background-color: transparent;
     padding: 5px 10px;
     width: 80px;
 }

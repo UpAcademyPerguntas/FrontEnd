@@ -4,6 +4,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://192.168.150.213:8080/QuestionsAPI/api'
+  apiUrl: 'http://localhost:8080/QuestionsAPI/api'
 };
 

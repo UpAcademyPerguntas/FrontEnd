@@ -28,16 +28,24 @@
 .button {
   padding: 10px 20px;
   border-radius: 10px 10px;
+  border: 1px solid grey;
+  color: grey;
+  background-color: transparent;
+
+}
+.button:enabled:hover{
+  background-color:rgb(25, 196, 194);
+  color: white;
+}
+
+.button:enabled{
+  padding: 10px 20px;
+  border-radius: 10px 10px;
   border: 1px solid rgb(25, 196, 194);
   color: rgb(25, 196, 194);
   background-color: transparent;
 
 }
-.button:hover{
-  background-color:rgb(25, 196, 194);
-  color: white;
-}
-
 p {
   text-align: left;
   color: red;
