@@ -34,17 +34,19 @@
 
     <div class="col">
       <div class="row">
+        <div class="col-9 p-0">
         <input
+          class = "w-100"
           type="text"
           [(ngModel)]="question.questionContent"
           placeholder="Enter your Question"
         />
-
-        <div class="form-row">
+      </div>
+        <div class="col-3">
           <button
             (click)="submitQuestion()"
             [disabled]="submitQuestionDisabled"
-            class="submitButton"
+            class="submitButton w-100"
             type="button"
           >
             Submit

@@ -30,7 +30,6 @@
   margin-top: 20px;
   border: 2px solid;
   border-color: rgb(28, 26, 85);
-
   color: white;
   margin-bottom: 5px;
   box-shadow: 20px 20px 20px 10px rgba(0, 0, 0, 0.308);
@@ -83,7 +82,7 @@ input::placeholder {
 
 .submitButton {
   border: solid 2px rgb(25, 196, 194);
-  padding: 10px 10px;
+  padding: 6px 10px;
   margin: 10px -7px;
   text-align: center;
   color: white;
@@ -149,4 +148,12 @@ input::placeholder {
 .scrollQuestions{
   overflow-y:auto;
   max-height: 500px;
+}
+
+@media screen and (max-width: 600px) {
+  .conferenceInfo {
+    width: 100%;
+    margin: 1.3rem !important;
+
+  }
 }
