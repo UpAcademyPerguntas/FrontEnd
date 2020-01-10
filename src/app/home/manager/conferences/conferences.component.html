@@ -1,11 +1,8 @@
 <div class="container text-center">
-  <div
-    class="row d-flex justify-content-center align-items-center"
-    style="margin-top: 20px;"
-  >
-    <button type="button" class="btn-azulctw" (click)="openModal(template)">
-      Create conference
-    </button>
+
+  <div class="row d-flex justify-content-center align-items-center" style="margin-top: 20px;">
+    <button type="button" class="btn-azulctw" (click)="openModal(template, 0)">Create
+      conference</button>
     <div class="sort-section">
       <b class="text-white">Filter: </b>
       <select class="select-Option" [(ngModel)]="sortOption" (change)="sort()">

@@ -19,7 +19,7 @@ export class QuestionsComponent implements OnInit {
 
   conferenceId:string;
   conferenceName;
-  conferenceAll = {};
+  conferenceAll: any = {};
 
   lastQuestionTime:number=0;
   lastAnsweredQuestionTime:number=0;
@@ -28,6 +28,7 @@ export class QuestionsComponent implements OnInit {
   submitQuestionDisabled=false;
   sortOption:string;
   videoUrl;
+  thumbnail: string;
 
   question= {
     questionContent:'',
