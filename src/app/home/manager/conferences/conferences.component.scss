@@ -1,7 +1,3 @@
-.btnCreateColor {
-  background-color:rgb(25, 196, 194);
-  color: white;
-}
 
 input,
 textarea {
@@ -102,8 +98,8 @@ color: white;
 }
 
 .btnCreate{
-  border-color: rgb(25, 196, 194);
-  color: rgb(25, 196, 194);
+  border-color: grey;
+  color:grey;
   border-radius: 10px 10px;
   border: solid 2px;
   padding: 10px 30px;
@@ -111,9 +107,20 @@ color: white;
   margin-right: 10px;
 }
 
-.btnCreate:hover{
+.btnCreate:enabled{
+  border-color: rgb(25, 196, 194);
+  color:rgb(25, 196, 194);
+}
+
+.btnCreate:enabled:hover{
   background-color: rgb(25, 196, 194);
-  color: white;
+  color:white;
+}
+
+
+.textWarning{
+  color:white;
+
 }
 
 .btnCancel{
@@ -144,4 +151,8 @@ color: white;
 
 .warning{
   color:white;
+}
+
+.card{
+  box-shadow: 20px 20px 20px 10px rgba(0, 0, 0, 0.308);
 }
